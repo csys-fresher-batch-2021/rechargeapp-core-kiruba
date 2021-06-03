@@ -29,14 +29,16 @@ public class RegisterDao {
 			pst.setString(2, reg.getPassword());
 			pst.setString(3, reg.getEmail());
 			pst.setString(4, reg.getAge());
-			pst.setString(5, reg.getMoblieNo());
+			pst.setString(5, reg.getMobileNo());
 			pst.setString(6, reg.getAdhaarNo());
 
 			pst.executeUpdate();
 
 		} catch (ClassNotFoundException | SQLException e) {
+			
 
 			e.printStackTrace();
+			
 		} finally {
 			ConnectionUtil.close(connection, pst);
 

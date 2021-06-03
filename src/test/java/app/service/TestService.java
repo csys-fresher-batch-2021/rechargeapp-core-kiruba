@@ -21,7 +21,7 @@ public class TestService {
 
 		boolean valid = RegisterMainService.test(name, password, email, age, mobileNo, adhaarNo);
 
-		System.out.println("Successfully register");
+		
 		assertTrue(valid);
 
 	}
