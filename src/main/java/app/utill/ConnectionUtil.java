@@ -16,8 +16,12 @@ public class ConnectionUtil {
 		String url = "jdbc:postgresql://localhost/finapp_db";
 		String username = "postgres";
 		String password = "Livith1999";
-		// Step 1: Load the jdbc driver in memory
+		/*
+		Step 1: Load the JDBC driver in memory
+		 */
+		 
 		Class.forName(driverClass);
+		
 		// Step 2: Get the connection
 		 connection = DriverManager.getConnection(url, username, password);
 		

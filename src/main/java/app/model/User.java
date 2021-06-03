@@ -7,8 +7,7 @@ public class User {
 	private String age;
 	private String mobileNo;
 	private String adhaarNo;
-	
-	
+
 	public User(String name, String password, String email, String age, String mobileNo, String adhaarNo) {
 		super();
 		this.name = name;
@@ -18,61 +17,65 @@ public class User {
 		this.mobileNo = mobileNo;
 		this.adhaarNo = adhaarNo;
 	}
-	
-	
-	
-
-	
-
-
-
 
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getAge() {
 		return age;
 	}
+
 	public void setAge(String age) {
 		this.age = age;
 	}
+
 	public String getMobileNo() {
 		return mobileNo;
 	}
+
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
+
 	public String getAdhaarNo() {
 		return adhaarNo;
 	}
+
 	public void setAdhaarNo(String adhaarNo) {
 		this.adhaarNo = adhaarNo;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public User(String name, String password) {
 		super();
 		this.name = name;
 		this.password = password;
 	}
+
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", password=" + password + ", email=" + email + ", age=" + age + ", mobileNo="
 				+ mobileNo + ", adhaarNo=" + adhaarNo + "]";
 	}
-	
 
 }

@@ -1,14 +1,11 @@
 package app.dao;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import app.model.User;
 import app.utill.ConnectionUtil;
-
-
 
 public class RegisterDao {
 	private RegisterDao() {
@@ -20,7 +17,7 @@ public class RegisterDao {
 		PreparedStatement pst = null;
 
 		try {
-			connection =  ConnectionUtil.getConnection();
+			connection = ConnectionUtil.getConnection();
 
 			String sql = "insert into register(username,userpassword,email,age,mobileNo,adhaarNo) values(?,?,?,?,?,?)";
 
@@ -35,10 +32,9 @@ public class RegisterDao {
 			pst.executeUpdate();
 
 		} catch (ClassNotFoundException | SQLException e) {
-			
 
 			e.printStackTrace();
-			
+
 		} finally {
 			ConnectionUtil.close(connection, pst);
 

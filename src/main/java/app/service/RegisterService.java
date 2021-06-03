@@ -1,6 +1,7 @@
 package app.service;
 
 import app.dao.RegisterDao;
+import app.exception.MyException;
 import app.exception.ServiceException;
 
 import app.model.User;
@@ -31,15 +32,22 @@ public class RegisterService {
 	public static boolean isValidUserDetails(String name,String password,String email,String age,String mobileNo,String adhaarNo) {
 		boolean valid=false;
 		
-		if(RegisterValidation.isValidUserName(name)&&
-		RegisterValidation.isValidPassword(password)&&
-		
-		RegisterValidation.isValidEmail(email)&&
-		RegisterValidation.isValidAge(age)&&
-		RegisterValidation.isValidAdhaarNo(adhaarNo)&&
-		RegisterValidation.isValidMobileno(mobileNo)) {
-			valid=true;
+		try {
+			if(RegisterValidation.isValidUserName(name)&&
+			RegisterValidation.isValidPassword(password)&&
 			
+			RegisterValidation.isValidEmail(email)&&
+			RegisterValidation.isValidAge(age)&&
+			RegisterValidation.isValidAdhaarNo(adhaarNo)&&
+			RegisterValidation.isValidMobileno(mobileNo)) {
+				valid=true;
+				
+			}
+		} catch (MyException e) {
+			
+			throw new MyException("User Detail are Not Valid");
+		
+		
 		}
 		
 		
