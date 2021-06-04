@@ -1,38 +1,34 @@
 package in.kiruba.valid;
 
-import in.kiruba.exception.MyException;
+import in.kiruba.exception.ServiceException;
 import in.kiruba.validation.RegisterValidation;
 
 public class ValidUserDetail {
-	
-	public static boolean isValidUserDetails(String name,String password,String email,int age,String mobileNo,String adhaarNo) {
-		boolean valid=false;
-		
-		try {
-			if(RegisterValidation.isValidUserName(name)&&
-			RegisterValidation.isValidPassword(password)&&
-			
-			RegisterValidation.isValidEmail(email)&&
-			RegisterValidation.isValidAge(age)&&
-			RegisterValidation.isValidAdhaarNo(adhaarNo)&&
-			RegisterValidation.isValidMobileno(mobileNo)) {
-				valid=true;
-				
-			}
-		} catch (MyException e) {
-			
-			throw new MyException("User Detail are Not Valid");
-		
-		
-		}
-		
-		
-		return valid;
-		
-		
-		
+	private ValidUserDetail() {
+
 	}
 
+	public static boolean isValidUserDetails(String name, String password, String email, int age, long mobileNumber,
+			long aadharNumber) {
+		boolean valid = false;
 
+		try {
+			if (RegisterValidation.isValidUserName(name) && RegisterValidation.isValidPassword(password) &&
+
+					RegisterValidation.isValidEmail(email) && RegisterValidation.isValidAge(age)
+					&& RegisterValidation.isValidAdhaarNo(aadharNumber)
+					&& RegisterValidation.isValidMobileno(mobileNumber)) {
+				valid = true;
+
+			}
+		} catch (ServiceException e) {
+
+			throw new ServiceException("User Details are Not Valid");
+
+		}
+
+		return valid;
+
+	}
 
 }

@@ -1,5 +1,6 @@
 package in.kiruba.main;
 
+import in.kiruba.log.Logger;
 import in.kiruba.model.User;
 import in.kiruba.service.RegisterService;
 import in.kiruba.valid.ValidUserDetail;
@@ -7,32 +8,28 @@ import in.kiruba.valid.ValidUserDetail;
 public class TestService {
 
 	public static void main(String[] args) {
-		
-		
-		String name="Priya";
-		String password="Kavi@15";
-		
-		String email="kirubi11@gmail.com";
-		
-		String mobileNo="9999999789";
-		
-		int age=23;
-		
-		String adhaarNo="2456 7890 2357";
-		User reg=new User(name,password,email,age,mobileNo,adhaarNo);
-				
-		if(ValidUserDetail.isValidUserDetails(name, password, email, age, mobileNo, adhaarNo)){
+
+		String name = "Madhu";
+		String password = "Thanya@20";
+
+		String email = "madhu20@gmail.com";
+
+		long mobileNumber = 9999999781L;
+
+		int age = 23;
+
+		long aadharNumber = 245676902357L;
+		User reg = new User(name, password, email, age, mobileNumber, aadharNumber);
+
+		if (ValidUserDetail.isValidUserDetails(name, password, email, age, mobileNumber, aadharNumber)) {
 			RegisterService.callRegisterDao(reg);
-			System.out.println("Successfully registered");
-			
-			
-		}else {
-			System.out.println("Invalid Credentials");
+			String obj="Successfully registered";
+			Logger.logger(obj);
+
+		} else {
+			String obj="Invalid Credentials";
+			Logger.logger(obj);
 		}
-		
-		
-		
-	
 
 	}
 

@@ -5,17 +5,17 @@ public class User {
 	private String password;
 	private String email;
 	private int age;
-	private String mobileNo;
-	private String adhaarNo;
+	private long mobileNumber;
+	private long aadharNumber;
 
-	public User(String name, String password, String email, int age, String mobileNo, String adhaarNo) {
+	public User(String name, String password, String email, int age, long mobileNumber, long aadharNumber) {
 		super();
 		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.age = age;
-		this.mobileNo = mobileNo;
-		this.adhaarNo = adhaarNo;
+		this.mobileNumber = mobileNumber;
+		this.aadharNumber = aadharNumber;
 	}
 
 	public String getEmail() {
@@ -34,20 +34,20 @@ public class User {
 		this.age = age;
 	}
 
-	public String getMobileNo() {
-		return mobileNo;
+	public long getMobileNo() {
+		return mobileNumber;
 	}
 
-	public void setMobileNo(String mobileNo) {
-		this.mobileNo = mobileNo;
+	public void setMobileNo(long mobileNumber) {
+		this.mobileNumber = mobileNumber;
 	}
 
-	public String getAdhaarNo() {
-		return adhaarNo;
+	public long getAdhaarNo() {
+		return aadharNumber;
 	}
 
-	public void setAdhaarNo(String adhaarNo) {
-		this.adhaarNo = adhaarNo;
+	public void setAdhaarNo(long aadharNumber) {
+		this.aadharNumber = aadharNumber;
 	}
 
 	public String getName() {
@@ -75,7 +75,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", password=" + password + ", email=" + email + ", age=" + age + ", mobileNo="
-				+ mobileNo + ", adhaarNo=" + adhaarNo + "]";
+				+ mobileNumber + ", adhaarNo=" + aadharNumber + "]";
 	}
 
 }

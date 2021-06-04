@@ -6,26 +6,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import in.kiruba.exception.DatabaseException;
+
 public class ConnectionUtil {
 	private ConnectionUtil() {
 		
 	}
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
-		Connection connection=null;
-		String driverClass = "org.postgresql.Driver";
-		String url = "jdbc:postgresql://localhost/finapp_db";
-		String username = "postgres";
-		String password = "Livith1999";
-		/*
-		Step 1: Load the JDBC driver in memory
-		 */
-		 
-		Class.forName(driverClass);
-		
-		// Step 2: Get the connection
-		 connection = DriverManager.getConnection(url, username, password);
-		
-		return connection;
+		try {
+			Class.forName(System.getenv("spring.datasource.driver-class-name"));
+			return DriverManager.getConnection(System.getenv("spring.datasource.url"),
+					System.getenv("spring.datasource.username"), System.getenv("spring.datasource.password"));
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			throw new DatabaseException("Can't establish connection");
+		}
 	}
 	public static void close(Connection con,PreparedStatement pst) {
 		try {

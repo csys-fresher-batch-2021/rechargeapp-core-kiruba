@@ -20,21 +20,21 @@ public class RegisterDao {
 		try {
 			connection = ConnectionUtil.getConnection();
 
-			String sql = "insert into user_table(username,userpassword,email,age,mobileNo,adhaarNo) values(?,?,?,?,?,?)";
+			String sql = "insert into user_table(username,userpassword,email,age,mobileNumber,adhaarNo) values(?,?,?,?,?,?)";
 
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, reg.getName());
 			pst.setString(2, reg.getPassword());
 			pst.setString(3, reg.getEmail());
 			pst.setInt(4, reg.getAge());
-			pst.setString(5, reg.getMobileNo());
-			pst.setString(6, reg.getAdhaarNo());
+			pst.setLong(5, reg.getMobileNo());
+			pst.setLong(6, reg.getAdhaarNo());
 
 			pst.executeUpdate();
 
 		} catch (DatabaseException e) {
 			e.printStackTrace();
-			throw new DatabaseException("Cannto insert");
+			throw new DatabaseException("unable to  insert  user details");
 
 		} finally {
 			ConnectionUtil.close(connection, pst);

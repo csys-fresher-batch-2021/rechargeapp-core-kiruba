@@ -79,7 +79,7 @@ public class TestRegisterValidation {
 		@Test
 		public void testwithCorrectMobileNo() {
 
-			boolean valid = RegisterValidation.isValidMobileno("9999999999");
+			boolean valid = RegisterValidation.isValidMobileno(9999999999L);
 			assertTrue(valid);
 
 		} /*
@@ -89,7 +89,7 @@ public class TestRegisterValidation {
 		@Test
 		public void testwithInCorrectMobileNo() {
 
-			boolean valid = RegisterValidation.isValidMobileno("888888888");
+			boolean valid = RegisterValidation.isValidMobileno(888888888L);
 			assertFalse(valid);
 
 		}
@@ -100,7 +100,7 @@ public class TestRegisterValidation {
 		@Test
 		public void testwithCorrectAdhaarNo() {
 
-			boolean valid = RegisterValidation.isValidAdhaarNo("3456 7890 2345");
+			boolean valid = RegisterValidation.isValidAdhaarNo(345678902345L);
 			assertTrue(valid);
 
 		}
@@ -111,7 +111,7 @@ public class TestRegisterValidation {
 		@Test
 		public void testwithInCorrectAdhaarNo() {
 
-			boolean valid = RegisterValidation.isValidAdhaarNo("3456 7890 234");
+			boolean valid = RegisterValidation.isValidAdhaarNo(34567890234L);
 			assertFalse(valid);
 
 		}

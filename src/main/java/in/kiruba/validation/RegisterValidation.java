@@ -83,7 +83,7 @@ package in.kiruba.validation;
 		public static boolean isValidAge(int age) {
 			boolean isValid = false;
 
-				if ((age > 0) && (age < 60)) {
+				if (age > 0 && age<=100) {
 					isValid = true;
 
 				}
@@ -97,13 +97,14 @@ package in.kiruba.validation;
 		this method validate the mobileNo which contain must 10 numbers.
 		*/
 
-		public static boolean isValidMobileno(String mobileNo) {
+		public static boolean isValidMobileno(long mobileNo) {
 			boolean isValid = false;
+			String mobileNumber=Long.toString(mobileNo);
 
 			String regex = "^[0-9]{10}$";
-			if (UserDetailSetValidation.isEmptyString(mobileNo)) {
+			if (UserDetailSetValidation.isEmptyString(mobileNumber)) {
 				Pattern pattern = Pattern.compile(regex);
-				Matcher match = pattern.matcher(mobileNo);
+				Matcher match = pattern.matcher(mobileNumber);
 
 				isValid = match.matches();
 
@@ -115,13 +116,14 @@ package in.kiruba.validation;
 		 * this method validate the adhaarNo ,which contain 12 numbers.
 		 */
 
-		public static boolean isValidAdhaarNo(String adhaarNo) {
+		public static boolean isValidAdhaarNo(long adhaarNo) {
 			boolean isValid = false;
+			String aadharNumber=Long.toString(adhaarNo);
 
-			String regex = "^[2-9]{1}[0-9]{3}\\s[0-9]{4}\\s[0-9]{4}$";
-			if (UserDetailSetValidation.isEmptyString(adhaarNo)) {
+			String regex = "^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$";
+			if (UserDetailSetValidation.isEmptyString(aadharNumber)) {
 				Pattern pattern = Pattern.compile(regex);
-				Matcher match = pattern.matcher(adhaarNo);
+				Matcher match = pattern.matcher(aadharNumber);
 
 				isValid = match.matches();
 
