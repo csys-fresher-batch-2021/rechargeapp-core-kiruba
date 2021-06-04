@@ -11,12 +11,21 @@ import in.kiruba.exception.DatabaseException;
 public class ConnectionUtil {
 	private ConnectionUtil() {
 		
+		
+		
 	}
+	private static final String DRIVER_CLASS_NAME=System.getenv("spring.datasource.driver-class-name");
+	private static final String URL=System.getenv("spring.datasource.url");
+	private static final String USERNAME=System.getenv("spring.datasource.username");
+	private static final String PASSWORD=System.getenv("spring.datasource.password");
+	
+	
+	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		try {
-			Class.forName(System.getenv("spring.datasource.driver-class-name"));
-			return DriverManager.getConnection(System.getenv("spring.datasource.url"),
-					System.getenv("spring.datasource.username"), System.getenv("spring.datasource.password"));
+			Class.forName(DRIVER_CLASS_NAME);
+			return DriverManager.getConnection(URL,USERNAME,PASSWORD);
+					
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 			throw new DatabaseException("Can't establish connection");
@@ -24,12 +33,12 @@ public class ConnectionUtil {
 	}
 	public static void close(Connection con,PreparedStatement pst) {
 		try {
-			if (con != null) {
-				con.close();
+			if (pst != null) {
+				pst.close();
 				
 			}
-			if(pst!=null) {
-				pst.close();
+			if(con!=null) {
+				con.close();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -39,9 +48,9 @@ public class ConnectionUtil {
 	
 	
 	public static void close(ResultSet rs, PreparedStatement pst, Connection con) {
-		if(con!=null) {
+		if(rs!=null) {
 			try {
-				con.close();
+				rs.close();
 			} catch (SQLException e) {
 	
 				e.printStackTrace();
@@ -55,9 +64,9 @@ public class ConnectionUtil {
 				e.printStackTrace();
 			}
 		}
-		if(rs!=null) {
+		if(con!=null) {
 			try {
-				rs.close();
+				con.close();
 			} catch (SQLException e) {
 			
 				e.printStackTrace();

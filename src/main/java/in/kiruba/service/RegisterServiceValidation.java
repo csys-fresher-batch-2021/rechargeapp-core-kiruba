@@ -19,7 +19,7 @@ public class RegisterServiceValidation {
 		boolean isRegister = ValidUserDetail.isValidUserDetails(name, password, email, age, mobileNumber, aadharNumber);
 		if (isRegister) {
 
-			RegisterService.callRegisterDao(reg);
+			RegisterService.RegisterUser(reg);
 			valid = true;
 
 		}

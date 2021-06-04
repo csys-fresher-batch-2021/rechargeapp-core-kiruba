@@ -20,7 +20,7 @@ public class RegisterDao {
 		try {
 			connection = ConnectionUtil.getConnection();
 
-			String sql = "insert into user_table(username,userpassword,email,age,mobileNumber,adhaarNo) values(?,?,?,?,?,?)";
+			String sql = "insert into users(username,userpassword,email,age,mobile_Number,adhaar_Number) values(?,?,?,?,?,?)";
 
 			pst = connection.prepareStatement(sql);
 			pst.setString(1, reg.getName());

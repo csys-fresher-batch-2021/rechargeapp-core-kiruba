@@ -22,7 +22,7 @@ public class TestService {
 		User reg = new User(name, password, email, age, mobileNumber, aadharNumber);
 
 		if (ValidUserDetail.isValidUserDetails(name, password, email, age, mobileNumber, aadharNumber)) {
-			RegisterService.callRegisterDao(reg);
+			RegisterService.RegisterUser(reg);
 			String obj="Successfully registered";
 			Logger.logger(obj);
 
