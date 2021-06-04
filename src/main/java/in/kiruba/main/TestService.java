@@ -9,20 +9,20 @@ public class TestService {
 
 	public static void main(String[] args) {
 
-		String name = "Madhu";
-		String password = "Thanya@20";
+		String name = "Saras";
+		String password = "Saras@20";
 
-		String email = "madhu20@gmail.com";
+		String email = "Saras20@gmail.com";
 
-		long mobileNumber = 9999999781L;
+		long mobileNumber = 9999998781L;
 
 		int age = 23;
 
-		long aadharNumber = 245676902357L;
+		long aadharNumber = 245676002357L;
 		User reg = new User(name, password, email, age, mobileNumber, aadharNumber);
 
 		if (ValidUserDetail.isValidUserDetails(name, password, email, age, mobileNumber, aadharNumber)) {
-			RegisterService.RegisterUser(reg);
+			RegisterService.registerUser(reg);
 			String obj="Successfully registered";
 			Logger.logger(obj);
 
