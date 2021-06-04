@@ -19,7 +19,7 @@ public class RegisterServiceValidation {
 		boolean isRegister = ValidUserDetail.isValidUserDetails(name, password, email, age, mobileNumber, aadharNumber);
 		if (isRegister) {
 
-			RegisterService.RegisterUser(reg);
+			RegisterService.registerUser(reg);
 			valid = true;
 
 		}

@@ -10,7 +10,7 @@ public class RegisterService {
 	private RegisterService() {
 		
 	}
-	public static boolean RegisterUser(User regobj) {
+	public static boolean registerUser(User regobj) {
 		
 			try {
 				RegisterDao.register(regobj);
