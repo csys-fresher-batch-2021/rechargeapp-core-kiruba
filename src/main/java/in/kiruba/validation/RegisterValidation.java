@@ -1,6 +1,6 @@
 
 
-package app.validation;
+package in.kiruba.validation;
 
 
     
@@ -80,22 +80,21 @@ package app.validation;
 		this method validate the age ,it is must grater than 0 and less than 60
 		*/
 
-		public static boolean isValidAge(String age) {
+		public static boolean isValidAge(int age) {
 			boolean isValid = false;
 
-			if (UserDetailSetValidation.isEmptyString(age)) {
-				int i = Integer.parseInt(age);
-				if ((i > 0) && (i < 60)) {
+				if ((age > 0) && (age < 60)) {
 					isValid = true;
 
 				}
+				return isValid;
 
 			}
 			
-			return isValid;
 			
-		}/*
-		this method validate the mobileno which contain must 10 numbers.
+			
+		/*
+		this method validate the mobileNo which contain must 10 numbers.
 		*/
 
 		public static boolean isValidMobileno(String mobileNo) {

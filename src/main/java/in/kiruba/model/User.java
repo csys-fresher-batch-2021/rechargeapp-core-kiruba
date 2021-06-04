@@ -1,14 +1,14 @@
-package app.model;
+package in.kiruba.model;
 
 public class User {
 	private String name;
 	private String password;
 	private String email;
-	private String age;
+	private int age;
 	private String mobileNo;
 	private String adhaarNo;
 
-	public User(String name, String password, String email, String age, String mobileNo, String adhaarNo) {
+	public User(String name, String password, String email, int age, String mobileNo, String adhaarNo) {
 		super();
 		this.name = name;
 		this.password = password;
@@ -26,11 +26,11 @@ public class User {
 		this.email = email;
 	}
 
-	public String getAge() {
+	public int getAge() {
 		return age;
 	}
 
-	public void setAge(String age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 

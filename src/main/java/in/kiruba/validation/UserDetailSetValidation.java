@@ -1,4 +1,4 @@
-package app.validation;
+package in.kiruba.validation;
 
 public class UserDetailSetValidation {
 	private UserDetailSetValidation() {

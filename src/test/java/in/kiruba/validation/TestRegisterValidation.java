@@ -1,4 +1,4 @@
-package app.validation;
+package in.kiruba.validation;
 
 import static org.junit.Assert.*;
 
@@ -79,7 +79,7 @@ public class TestRegisterValidation {
 		@Test
 		public void testwithCorrectMobileNo() {
 
-			boolean valid = RegisterValidation.isValidMobileno("9025967216");
+			boolean valid = RegisterValidation.isValidMobileno("9999999999");
 			assertTrue(valid);
 
 		} /*
@@ -89,7 +89,7 @@ public class TestRegisterValidation {
 		@Test
 		public void testwithInCorrectMobileNo() {
 
-			boolean valid = RegisterValidation.isValidMobileno("902596721");
+			boolean valid = RegisterValidation.isValidMobileno("888888888");
 			assertFalse(valid);
 
 		}
@@ -123,7 +123,7 @@ public class TestRegisterValidation {
 		@Test
 		public void testwithCorrectAge() {
 
-			boolean valid = RegisterValidation.isValidAge("45");
+			boolean valid = RegisterValidation.isValidAge(45);
 			assertTrue(valid);
 
 		}
@@ -134,7 +134,7 @@ public class TestRegisterValidation {
 		@Test
 		public void testwithInCorrectAge() {
 
-			boolean valid = RegisterValidation.isValidAge("0");
+			boolean valid = RegisterValidation.isValidAge(0);
 			assertFalse(valid);
 
 		}

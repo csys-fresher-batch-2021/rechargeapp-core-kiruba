@@ -1,4 +1,4 @@
-package app.utill;
+package in.kiruba.utill;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

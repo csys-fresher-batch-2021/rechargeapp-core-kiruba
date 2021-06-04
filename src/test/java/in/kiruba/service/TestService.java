@@ -1,4 +1,4 @@
-package app.service;
+package in.kiruba.service;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +15,7 @@ public class TestService {
 
 		String mobileNo = "9025967216";
 
-		String age = "41";
+		int age = 41;
 
 		String adhaarNo = "3447 7890 3257";
 

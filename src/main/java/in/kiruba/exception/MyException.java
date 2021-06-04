@@ -1,4 +1,4 @@
-package app.exception;
+package in.kiruba.exception;
 
 
 	public class MyException extends RuntimeException{
