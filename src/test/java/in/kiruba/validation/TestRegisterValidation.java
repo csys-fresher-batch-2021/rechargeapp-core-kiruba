@@ -73,7 +73,7 @@ public class TestRegisterValidation {
 
 		}
 		 /*
-         * this test case validate the string mobileNo with correct detail.
+         * this test case validate the long mobileNo with correct detail.
          */
 
 		@Test
@@ -83,7 +83,7 @@ public class TestRegisterValidation {
 			assertTrue(valid);
 
 		} /*
-         * this test case validate the string mobileNo with Incorrect detail.
+         * this test case validate the long mobileNo with Incorrect detail.
          */
 
 		@Test
@@ -94,7 +94,7 @@ public class TestRegisterValidation {
 
 		}
 		 /*
-         * this test case validate the string adhaarNo with correct detail.
+         * this test case validate the long adhaarNo with correct detail.
          */
 
 		@Test
@@ -105,7 +105,7 @@ public class TestRegisterValidation {
 
 		}
 		 /*
-         * this test case validate the string adhaarNo with Incorrect detail.
+         * this test case validate the long adhaarNo with Incorrect detail.
          */
 
 		@Test
@@ -116,7 +116,7 @@ public class TestRegisterValidation {
 
 		}
 		 /*
-         * this test case validate the string age with correct detail.
+         * this test case validate the int age with correct detail.
          */
 
 		
@@ -128,7 +128,7 @@ public class TestRegisterValidation {
 
 		}
 		 /*
-         * this test case validate the string age with Incorrect detail.
+         * this test case validate the int age with Incorrect detail.
          */
 
 		@Test

@@ -16,7 +16,7 @@ public class RegisterService {
 				RegisterDao.register(regobj);
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
-				throw new ServiceException("cannot call RegisterDao");
+				throw new ServiceException("Cannot call RegisterDao");
 				
 				
 			}
