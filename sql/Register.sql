@@ -1,3 +1,6 @@
+/**
+ * query for create table users.
+ */
 create table users(
     id serial PRIMARY KEY,
 	username varchar(30)  unique not null,

@@ -15,7 +15,7 @@ package in.kiruba.validation;
 			
 		
 		/*
-		 * this method validate the string name,which is contains one upper case and lower case and must contain 3 to 12 characters.
+		 * this method validate the string name,which contains one upper case and lower case and must contain 3 to 12 characters.
 		 */
 		public static boolean isValidUserName(String userName) {
 			boolean isValid = false;
@@ -34,7 +34,7 @@ package in.kiruba.validation;
 		
 			
 		/*
-		 * this method validate the string name,which is contains one upper case and lower case and must contain one numeric value and special character and 5 or more characters.
+		 * this method validate the string name,which contains one upper case and lower case and must contain one numeric value and special character and 5 or more characters.
 		 */
 		
 

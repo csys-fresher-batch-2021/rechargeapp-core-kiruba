@@ -10,7 +10,7 @@ public class TestService {
 	public static void main(String[] args) {
 
 		String name = "Saras";
-		String password = "Saras@20";
+		String key = "Saras@20";
 
 		String email = "Saras20@gmail.com";
 
@@ -19,9 +19,9 @@ public class TestService {
 		int age = 23;
 
 		long aadharNumber = 245676002357L;
-		User reg = new User(name, password, email, age, mobileNumber, aadharNumber);
+		User reg = new User(name, key, email, age, mobileNumber, aadharNumber);
 
-		if (ValidUserDetail.isValidUserDetails(name, password, email, age, mobileNumber, aadharNumber)) {
+		if (ValidUserDetail.isValidUserDetails(name, key, email, age, mobileNumber, aadharNumber)) {
 			RegisterService.registerUser(reg);
 			String obj="Successfully registered";
 			Logger.logger(obj);

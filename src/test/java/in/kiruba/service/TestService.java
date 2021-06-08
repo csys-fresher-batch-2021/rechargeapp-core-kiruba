@@ -131,7 +131,7 @@ public class TestService {
 		String name = "Livith";
 		String key = "Livith@15";
 
-		String email = "livith20@gmail.com";
+		String email = "livith80@gmail.com";
 
 		long mobileNo = 9999998802L;
 
