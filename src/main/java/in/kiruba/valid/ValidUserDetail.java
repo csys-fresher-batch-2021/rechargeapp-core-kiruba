@@ -5,6 +5,7 @@ import in.kiruba.validation.RegisterValidation;
 
 public class ValidUserDetail {
 	private ValidUserDetail() {
+		//default constructor
 
 	}
 

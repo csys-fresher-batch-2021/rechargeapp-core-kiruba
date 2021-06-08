@@ -10,6 +10,7 @@ import in.kiruba.utill.ConnectionUtil;
 
 public class RegisterDao {
 	private RegisterDao() {
+		//default constructor
 
 	}
 

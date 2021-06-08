@@ -2,6 +2,7 @@ package in.kiruba.log;
 
 public class Logger {
 	private  Logger() {
+		//default constructor
 		
 	}
 	
