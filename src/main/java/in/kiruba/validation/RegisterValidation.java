@@ -34,7 +34,7 @@ package in.kiruba.validation;
 		
 			
 		/*
-		 * this method validate the string name,which contains one upper case and lower case and must contain one numeric value and special character and 5 or more characters.
+		 * this method validate the string name,which contains one Upper case and Lower case and must contain one numeric value and special character and 5 or more characters.
 		 */
 		
 

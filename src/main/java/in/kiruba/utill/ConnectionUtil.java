@@ -10,6 +10,7 @@ import in.kiruba.exception.DatabaseException;
 
 public class ConnectionUtil {
 	private ConnectionUtil() {
+		//default constructor
 
 	}
 

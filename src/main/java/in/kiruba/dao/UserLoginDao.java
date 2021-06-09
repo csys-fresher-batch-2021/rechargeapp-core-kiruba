@@ -40,7 +40,7 @@ public class UserLoginDao {
 			}
 		} catch (DatabaseException | SQLException | ClassNotFoundException e) {
 
-			e.printStackTrace();
+			
 			throw new DatabaseException("Invalid credentials");
 
 		} finally {

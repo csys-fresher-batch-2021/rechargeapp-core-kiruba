@@ -5,7 +5,7 @@ public class UserDetailSetValidation {
 		
 	}
 	/*
-	 * this method validate the parameter string is empty or not
+	 * this method validate the parameter String is empty or not
 	 */
 	public static boolean isEmptyString(String userName) {
 		boolean isValid=false;
