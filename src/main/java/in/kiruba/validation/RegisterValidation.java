@@ -34,14 +34,14 @@ package in.kiruba.validation;
 		
 			
 		/*
-		 * this method validate the string name,which contains one upper case and lower case and must contain one numeric value and special character and 5 or more characters.
+		 * this method validate the string name,which contains one Upper case and Lower case and must contain one numeric value and special character and 5 or more characters.
 		 */
 		
 
 		public static boolean isValidPassword(String password) {
 			boolean isValid = false;
 
-			String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{5,}$";
+			String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{3,12}$";
 			if (UserDetailSetValidation.isEmptyString(password)) {
 				Pattern pattern = Pattern.compile(regex);
 				Matcher match = pattern.matcher(password);
