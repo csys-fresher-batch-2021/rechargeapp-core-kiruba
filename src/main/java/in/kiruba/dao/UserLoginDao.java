@@ -25,7 +25,7 @@ public class UserLoginDao {
 		List<User> list = new ArrayList<>();
 		try {
 
-			try {
+		
 				connection = ConnectionUtil.getConnection();
 
 				prepareStatement = connection.prepareStatement(selectSQLQuery);
@@ -38,11 +38,8 @@ public class UserLoginDao {
 					list.add(userDetail);
 					
 				}
-			} catch (ClassNotFoundException | SQLException e) {
-
-				e.printStackTrace();
-			}
-		} catch (DatabaseException e) {
+			
+		} catch (DatabaseException|ClassNotFoundException |SQLException e) {
 			e.printStackTrace();
 			throw new DatabaseException("Cannot get user from database");
 		} finally {
