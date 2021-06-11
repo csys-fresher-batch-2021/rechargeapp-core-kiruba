@@ -11,42 +11,74 @@ import in.kiruba.model.User;
 import in.kiruba.utill.ConnectionUtil;
 
 public class UserLoginDao {
-	private UserLoginDao() {
+	public UserLoginDao() {
 		// default constructor
 
 	}
 
-	public static User getUserDetailsByUserNameAndUserPassword(User user) {
+	public static User getUserDetailsByUserName(User user) {
 		String selectSQLQuery = " select * from users where username=?";
 		Connection connection = null;
 		PreparedStatement prepareStatement = null;
 		ResultSet resultSet = null;
 		User userDetail = null;
 		List<User> list = new ArrayList<>();
+
 		try {
 
-		
-				connection = ConnectionUtil.getConnection();
+			connection = ConnectionUtil.getConnection();
 
-				prepareStatement = connection.prepareStatement(selectSQLQuery);
-				prepareStatement.setString(1, user.getName());
-				resultSet = prepareStatement.executeQuery();
-				while (resultSet.next()) {
-					String userName = resultSet.getString("username");
-					String password = resultSet.getString("userpassword");
-					userDetail = new User(userName, password);
-					list.add(userDetail);
-					
-				}
-			
-		} catch (DatabaseException|ClassNotFoundException |SQLException e) {
-			
+			prepareStatement = connection.prepareStatement(selectSQLQuery);
+			prepareStatement.setString(1, user.getName());
+			resultSet = prepareStatement.executeQuery();
+			while (resultSet.next()) {
+
+				String userName = resultSet.getString("username");
+
+				String password = resultSet.getString("userpassword");
+
+				userDetail = new User(userName, password);
+				list.add(userDetail);
+
+			}
+
+		} catch (DatabaseException | ClassNotFoundException | SQLException | NullPointerException e) {
+
 			throw new DatabaseException("Cannot get user from database");
 		} finally {
 			ConnectionUtil.close(resultSet, prepareStatement, connection);
 		}
 		return userDetail;
 
+	}
+
+	public boolean findUserAlreadtExitOrNot(User user) {
+		String selectSQLQuery = "select exists(select username from users where username=?)";
+
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet = null;
+
+		boolean isExists = false;
+
+		try {
+
+			connection = ConnectionUtil.getConnection();
+
+			prepareStatement = connection.prepareStatement(selectSQLQuery);
+			prepareStatement.setString(1, user.getName());
+			resultSet = prepareStatement.executeQuery();
+			if (resultSet.next()) {
+				isExists = resultSet.getBoolean("exists");
+			}
+
+		} catch (DatabaseException | ClassNotFoundException | SQLException | NullPointerException e) {
+
+			throw new DatabaseException("Cannot get user from database");
+		} finally {
+			ConnectionUtil.close(resultSet, prepareStatement, connection);
+		}
+		return isExists;
 	}
 
 }

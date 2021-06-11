@@ -41,7 +41,7 @@ package in.kiruba.validation;
 		public static boolean isValidPassword(String password) {
 			boolean isValid = false;
 
-			String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{5,}$";
+			String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{3,12}$";
 			if (UserDetailSetValidation.isEmptyString(password)) {
 				Pattern pattern = Pattern.compile(regex);
 				Matcher match = pattern.matcher(password);
