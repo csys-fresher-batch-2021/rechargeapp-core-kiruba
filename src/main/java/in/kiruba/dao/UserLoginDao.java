@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.ArrayList;
+import java.util.List;
 import in.kiruba.exception.DatabaseException;
+import in.kiruba.model.User;
 import in.kiruba.utill.ConnectionUtil;
 
 public class UserLoginDao {
@@ -16,37 +16,40 @@ public class UserLoginDao {
 
 	}
 
-	public static Map<String, String> getAllUserDetails() {
-		final Map<String, String> userListMap = new HashMap<>();
-
-		Connection con = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
+	public static User getUserDetailsByUserNameAndUserPassword(User user) {
+		String selectSQLQuery = " select * from users where username=?";
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet = null;
+		User userDetail = null;
+		List<User> list = new ArrayList<>();
 		try {
 
-			con = ConnectionUtil.getConnection();
+			try {
+				connection = ConnectionUtil.getConnection();
 
-			String sql = "select * from users";
+				prepareStatement = connection.prepareStatement(selectSQLQuery);
+				prepareStatement.setString(1, user.getName());
+				resultSet = prepareStatement.executeQuery();
+				while (resultSet.next()) {
+					String userName = resultSet.getString("username");
+					String password = resultSet.getString("userpassword");
+					userDetail = new User(userName, password);
+					list.add(userDetail);
+					
+				}
+			} catch (ClassNotFoundException | SQLException e) {
 
-			pst = con.prepareStatement(sql);
-			rs = pst.executeQuery();
-			while (rs.next()) {
-
-				String userName = rs.getString("username");
-				String passWord = rs.getString("userpassword");
-
-				userListMap.put(userName, passWord);
-
+				e.printStackTrace();
 			}
-		} catch (DatabaseException | SQLException | ClassNotFoundException e) {
-
-			
-			throw new DatabaseException("Invalid credentials");
-
+		} catch (DatabaseException e) {
+			e.printStackTrace();
+			throw new DatabaseException("Cannot get user from database");
 		} finally {
-			ConnectionUtil.close(rs, pst, con);
+			ConnectionUtil.close(resultSet, prepareStatement, connection);
 		}
-		return userListMap;
+		return userDetail;
+
 	}
 
 }
