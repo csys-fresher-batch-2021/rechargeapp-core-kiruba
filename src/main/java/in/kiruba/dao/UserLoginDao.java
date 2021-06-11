@@ -40,7 +40,7 @@ public class UserLoginDao {
 				}
 			
 		} catch (DatabaseException|ClassNotFoundException |SQLException e) {
-			e.printStackTrace();
+			
 			throw new DatabaseException("Cannot get user from database");
 		} finally {
 			ConnectionUtil.close(resultSet, prepareStatement, connection);
