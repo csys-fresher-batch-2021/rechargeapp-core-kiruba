@@ -2,6 +2,7 @@ package in.kiruba.service;
 
 import java.util.List;
 
+import in.kiruba.dao.ParticularPlan;
 import in.kiruba.dao.PlanDao;
 import in.kiruba.model.Plan;
 
@@ -29,7 +30,7 @@ public class PlanService {
 	public static List<Plan> getParticularNetworkList(String network) {
 
 		List<Plan> list;
-		list = PlanDao.getParticularNetworkList(network);
+		list = ParticularPlan.getParticularNetworkList(network);
 		return list;
 
 	}

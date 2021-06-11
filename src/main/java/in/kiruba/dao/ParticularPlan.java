@@ -11,12 +11,12 @@ import in.kiruba.exception.DatabaseException;
 import in.kiruba.model.Plan;
 import in.kiruba.utill.ConnectionUtil;
 
-public class PlanDao {
-	private PlanDao() {
-
+public class ParticularPlan {
+	private ParticularPlan() {
+		
 	}
-
-	public static List<Plan> getAllPlanLists() {
+	
+	public static List<Plan> getParticularNetworkList(String network) {
 		List<Plan> list = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pst = null;
@@ -24,8 +24,11 @@ public class PlanDao {
 
 		try {
 			con = ConnectionUtil.getConnection();
-			String sql = "select * from popular_plans";
+
+			String sql = "select network.network_name,popular_plans.plan,popular_plans.validity,popular_plans.mobile_data,popular_plans.subscriptions from network inner join popular_plans on network.network_name=popular_plans.network_name where network.network_name=?;";
 			pst = con.prepareStatement(sql);
+
+			pst.setString(1, network);
 
 			rs = pst.executeQuery();
 			while (rs.next()) {
@@ -41,8 +44,7 @@ public class PlanDao {
 			}
 
 		} catch (DatabaseException|ClassNotFoundException | SQLException e) {
-
-			throw new DatabaseException("Cannot get All plan Details");
+             throw new DatabaseException("Can't get particulatr network plan");
 		} finally {
 			ConnectionUtil.close(rs, pst, con);
 
