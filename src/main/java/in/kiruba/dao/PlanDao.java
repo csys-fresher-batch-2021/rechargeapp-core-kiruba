@@ -13,30 +13,29 @@ import in.kiruba.utill.ConnectionUtil;
 
 public class PlanDao {
 	private PlanDao() {
-
-	}
+   }
 
 	public static List<Plan> getAllPlanLists() {
-		List<Plan> list = new ArrayList<>();
-		Connection con = null;
-		PreparedStatement pst = null;
-		ResultSet rs = null;
+		List<Plan> lists = new ArrayList<>();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet resultset = null;
 
 		try {
-			con = ConnectionUtil.getConnection();
+			connection = ConnectionUtil.getConnection();
 			String sql = "select * from popular_plans";
-			pst = con.prepareStatement(sql);
+			pstmt = connection.prepareStatement(sql);
 
-			rs = pst.executeQuery();
-			while (rs.next()) {
-				int plan = rs.getInt("plan");
-				String name = rs.getString("network_name");
-				String validity = rs.getString("validity");
-				String data = rs.getString("mobile_data");
-				String subscriptions = rs.getString("subscriptions");
+			resultset = pstmt.executeQuery();
+			while (resultset.next()) {
+				int scheme = resultset.getInt("plan");
+				String networkName = resultset.getString("network_name");
+				String networkValidity = resultset.getString("validity");
+				String mobileData = resultset.getString("mobile_data");
+				String subscription = resultset.getString("subscriptions");
 
-				Plan obj = new Plan(plan, name, validity, data, subscriptions);
-				list.add(obj);
+				Plan obj = new Plan(scheme, networkName, networkValidity, mobileData, subscription);
+				lists.add(obj);
 
 			}
 
@@ -44,11 +43,11 @@ public class PlanDao {
 
 			throw new DatabaseException("Cannot get All plan Details");
 		} finally {
-			ConnectionUtil.close(rs, pst, con);
+			ConnectionUtil.close(resultset, pstmt, connection);
 
 		}
 
-		return list;
+		return lists;
 
 	}
 
