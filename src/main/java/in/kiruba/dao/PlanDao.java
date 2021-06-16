@@ -20,6 +20,7 @@ public class PlanDao {
 		Connection connection = null;
 		PreparedStatement pstmt = null;
 		ResultSet resultset = null;
+		
 
 		try {
 			connection = ConnectionUtil.getConnection();
@@ -36,6 +37,7 @@ public class PlanDao {
 
 				Plan obj = new Plan(scheme, networkName, networkValidity, mobileData, subscription);
 				lists.add(obj);
+				
 
 			}
 
@@ -48,6 +50,47 @@ public class PlanDao {
 		}
 
 		return lists;
+		
+
+	}
+	
+	public static Plan getExpriyDate(int plan,String network) {
+		
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet resultset = null;
+		Plan object=null;
+		
+
+		try {
+			connection = ConnectionUtil.getConnection();
+			String sql = "select * from popular_plans where plan=? and network_name=?";
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1,plan);
+			pstmt.setString(2,network);
+			resultset = pstmt.executeQuery();
+			while (resultset.next()) {
+				int scheme = resultset.getInt("plan");
+				
+				String name = resultset.getString("network_name");
+				String validity = resultset.getString("validity");
+				String data = resultset.getString("mobile_data");
+				String subScription = resultset.getString("subscriptions");
+
+				 object = new Plan(scheme, name, validity,data, subScription);
+			
+			}
+
+		} catch (DatabaseException|ClassNotFoundException | SQLException e) {
+
+			throw new DatabaseException("Cannot get Validity  Details");
+		} finally {
+			ConnectionUtil.close(resultset, pstmt, connection);
+
+		}
+
+		return object;
+		
 
 	}
 
