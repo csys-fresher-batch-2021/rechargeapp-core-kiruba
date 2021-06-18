@@ -9,7 +9,7 @@ import in.kiruba.service.PlanService;
 public class ExprityDateManager {
 
 	public static void main(String[] args) {
-		int plan=599;
+		int plan=2599;
 		String network="jio";
 		String[] array=PlanService.detials(plan, network);
 		for(String i:array) {

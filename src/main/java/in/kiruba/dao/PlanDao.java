@@ -93,5 +93,37 @@ public class PlanDao {
 		
 
 	}
+	public static List<Integer> getAllPlans() {
+		List<Integer> lists = new ArrayList<>();
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet resultset = null;
+		
+
+		try {
+			connection = ConnectionUtil.getConnection();
+			String sql = "select * from popular_plans";
+			pstmt = connection.prepareStatement(sql);
+			
+			resultset = pstmt.executeQuery();
+			while (resultset.next()) {
+				int scheme = resultset.getInt("plan");
+				
+				lists.add(scheme);
+				
+
+			}
+
+		} catch (DatabaseException|ClassNotFoundException | SQLException e) {
+
+			throw new DatabaseException("Cannot get All plans");
+		} finally {
+			ConnectionUtil.close(resultset, pstmt, connection);
+
+		}
+
+		return lists;
+	}
+
 
 }

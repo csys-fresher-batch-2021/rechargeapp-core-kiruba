@@ -39,6 +39,35 @@ public class PlanService {
 
 	}
 	/**
+	 * this method return list of all plans.
+	 * @param plan
+	 * @return
+	 */
+	public static List<Integer> getAllPlans() {
+
+		List<Integer> list;
+		list = PlanDao.getAllPlans();
+		return list;
+
+	}
+	/**
+	 * this method check the list contain the plan.
+	 * @param amount
+	 * @return
+	 */
+	public static boolean validAmount(int plan) {
+		boolean valid=false;
+		List<Integer> list;
+		list=getAllPlans();
+		if(list.contains(plan)) {
+			valid=true;
+		}
+		
+		
+	return valid;
+	}
+	
+	/**
 	 * this method find the days from validity. 
 	 * @param plan
 	 * @param network
