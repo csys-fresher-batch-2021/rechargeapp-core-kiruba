@@ -29,13 +29,13 @@ public class PlanDao {
 
 			resultset = pstmt.executeQuery();
 			while (resultset.next()) {
-				int scheme = resultset.getInt("plan");
+				int plan = resultset.getInt("plan");
 				String networkName = resultset.getString("network_name");
 				String networkValidity = resultset.getString("validity");
 				String mobileData = resultset.getString("mobile_data");
 				String subscription = resultset.getString("subscriptions");
 
-				Plan obj = new Plan(scheme, networkName, networkValidity, mobileData, subscription);
+				Plan obj = new Plan(plan, networkName, networkValidity, mobileData, subscription);
 				lists.add(obj);
 				
 
@@ -57,7 +57,7 @@ public class PlanDao {
 	public static Plan getExpriyDate(int plan,String network) {
 		
 		Connection connection = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement pst = null;
 		ResultSet resultset = null;
 		Plan object=null;
 		
@@ -65,10 +65,10 @@ public class PlanDao {
 		try {
 			connection = ConnectionUtil.getConnection();
 			String sql = "select * from popular_plans where plan=? and network_name=?";
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setInt(1,plan);
-			pstmt.setString(2,network);
-			resultset = pstmt.executeQuery();
+			pst = connection.prepareStatement(sql);
+			pst.setInt(1,plan);
+			pst.setString(2,network);
+			resultset = pst.executeQuery();
 			while (resultset.next()) {
 				int scheme = resultset.getInt("plan");
 				
@@ -85,7 +85,7 @@ public class PlanDao {
 
 			throw new DatabaseException("Cannot get Validity  Details");
 		} finally {
-			ConnectionUtil.close(resultset, pstmt, connection);
+			ConnectionUtil.close(resultset, pst, connection);
 
 		}
 
@@ -94,22 +94,22 @@ public class PlanDao {
 
 	}
 	public static List<Integer> getAllPlans() {
-		List<Integer> lists = new ArrayList<>();
-		Connection connection = null;
+		List<Integer> plan = new ArrayList<>();
+		Connection conn = null;
 		PreparedStatement pstmt = null;
-		ResultSet resultset = null;
+		ResultSet rs = null;
 		
 
 		try {
-			connection = ConnectionUtil.getConnection();
+			conn = ConnectionUtil.getConnection();
 			String sql = "select * from popular_plans";
-			pstmt = connection.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			
-			resultset = pstmt.executeQuery();
-			while (resultset.next()) {
-				int scheme = resultset.getInt("plan");
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int schemes = rs.getInt("plan");
 				
-				lists.add(scheme);
+				plan.add(schemes);
 				
 
 			}
@@ -118,11 +118,11 @@ public class PlanDao {
 
 			throw new DatabaseException("Cannot get All plans");
 		} finally {
-			ConnectionUtil.close(resultset, pstmt, connection);
+			ConnectionUtil.close(rs, pstmt, conn);
 
 		}
 
-		return lists;
+		return plan;
 	}
 
 
