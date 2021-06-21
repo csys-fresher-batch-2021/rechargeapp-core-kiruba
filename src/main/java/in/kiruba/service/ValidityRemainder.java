@@ -14,6 +14,15 @@ public class ValidityRemainder {
 		
 	}
 	
+	/**
+	 * this method is used to find transaction date then it is used to find validity.
+	 * @param plan
+	 * @param network
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	
 	public static long remainingValidity(int plan,String network) throws ClassNotFoundException, SQLException{
 	    
 	    int validityDays=AmountPayableService.getValidityInPayment(plan,network);

@@ -36,6 +36,12 @@ public class AmountPayableService {
 		return valid;
 
 	}
+	/**
+	 * this method is used to find validity.
+	 * @param amount
+	 * @param network
+	 * @return
+	 */
 
 	public static int getValidity(int amount, String network) {
 		Plan validity = PlanDao.getExpriyDate(amount, network);
@@ -48,6 +54,12 @@ public class AmountPayableService {
 
 		return conversionInteger;
 	}
+	/**
+	 * this method return validity in payment Details.
+	 * @param amount
+	 * @param network
+	 * @return
+	 */
 
 	public static int getValidityInPayment(int amount, String network) {
 		PaymentDetail validity = null;
@@ -57,7 +69,7 @@ public class AmountPayableService {
 			planValidity = validity.getValidity();
 		} catch (ClassNotFoundException | SQLException e) {
 
-			e.printStackTrace();
+			throw new ServiceException("Cannot Find Validity");
 		}
 		
 
