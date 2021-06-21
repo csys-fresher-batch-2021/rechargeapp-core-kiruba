@@ -9,7 +9,7 @@ import in.kiruba.service.PlanService;
 public class PlanManager {
 
 	public static void main(String[] args) {
-		String network="jio";
+		String network="Airtel";
         List<Plan> list=PlanService.getParticularNetworkList(network);
 		Logger.logger(network);
 		String string="----PLANS----";

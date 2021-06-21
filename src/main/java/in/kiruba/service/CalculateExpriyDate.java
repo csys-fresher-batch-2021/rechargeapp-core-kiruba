@@ -29,6 +29,13 @@ public class CalculateExpriyDate {
 	    return expriyDate;
 	
 	}
+	public static LocalDate calculateExpriyDateOfLocalDate(LocalDate transactionDate,int days) {
+		LocalDate date;
+		date=transactionDate.plusDays(days);
+		
+		return date;
+	
+	}
 	
    
 }

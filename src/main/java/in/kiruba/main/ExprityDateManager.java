@@ -1,5 +1,6 @@
 package in.kiruba.main;
 
+
 import java.util.Date;
 
 import in.kiruba.log.Logger;
@@ -22,8 +23,8 @@ public class ExprityDateManager {
 		Logger.logger(date);
 		
 		String day=PlanService.findDays(plan,network);
-		int y=Integer.parseInt(day);
-		String expriyDate=CalculateExpriyDate.calculateExpriyDate(y);
+		int days=Integer.parseInt(day);
+		String expriyDate=CalculateExpriyDate.calculateExpriyDate(days);
 		
 		String statement="----SCHEME EXPRIY DATE----";
 		Logger.logger(statement);		

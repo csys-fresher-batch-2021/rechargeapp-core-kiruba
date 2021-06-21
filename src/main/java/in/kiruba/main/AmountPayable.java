@@ -11,14 +11,16 @@ import in.kiruba.valid.ValidPaymentDetail;
 public class AmountPayable {
 
 	public static void main(String[] args) {
-		 int userId=23;
-		 String network="jio";
-	     long mobileNumber=9990999991L;
+		 int userId=77;
+		 String network="Airtel";
+	     long mobileNumber=9190990991L;
 	     long cardNumber=371234567890123L;
-	     int amount=2599;
-	     int cvv=677;
+	     int amount=2999;
+	     int cvv=777;
+	     int validity=AmountPayableService.getValidity(amount, network);
 	     LocalDate date=LocalDate.of(2025, 7, 20);
-	     PaymentDetail object =new PaymentDetail(userId,network,amount,mobileNumber);
+	     PaymentDetail object =new PaymentDetail(userId,network,amount,validity,mobileNumber);
+	     
 	    
 	     boolean valid=ValidPaymentDetail.paymentDetailValidation(mobileNumber, cardNumber, amount, cvv, date);
 	     try {
