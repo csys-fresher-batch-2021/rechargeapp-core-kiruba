@@ -75,6 +75,7 @@ public class PlanDao {
 				String name = resultset.getString("network_name");
 				String validity = resultset.getString("validity");
 				String data = resultset.getString("mobile_data");
+				
 				String subScription = resultset.getString("subscriptions");
 
 				 object = new Plan(scheme, name, validity,data, subScription);
@@ -108,6 +109,7 @@ public class PlanDao {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				int schemes = rs.getInt("plan");
+				
 				
 				plan.add(schemes);
 				
