@@ -56,8 +56,9 @@ public class AdditionalPlanService {
 				try {
 					AdditionalPlanDao.additionalPlan(object);
 				} catch (SQLException e) {
+					throw new ServiceException("Unable to add details");
 
-					e.printStackTrace();
+					
 				}
 				String string = "RECHARGE SUCCESSFULL";
 				Logger.logger(string);
