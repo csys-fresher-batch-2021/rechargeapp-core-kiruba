@@ -14,6 +14,10 @@ import in.kiruba.utill.ConnectionUtil;
 public class PlanDao {
 	private PlanDao() {
    }
+	private static final String PROVIDER="network_name";
+	private static final String EXPIRY="validity";
+	private static final String NETBALANCE="mobile_data";
+	private static final String PACKAGES="subscriptions";
 
 	public static List<Plan> getAllPlanLists() {
 		List<Plan> lists = new ArrayList<>();
@@ -30,10 +34,10 @@ public class PlanDao {
 			resultset = pstmt.executeQuery();
 			while (resultset.next()) {
 				int plan = resultset.getInt("plan");
-				String networkName = resultset.getString("network_name");
-				String networkValidity = resultset.getString("validity");
-				String mobileData = resultset.getString("mobile_data");
-				String subscription = resultset.getString("subscriptions");
+				String networkName = resultset.getString(PROVIDER);
+				String networkValidity = resultset.getString(EXPIRY);
+				String mobileData = resultset.getString(NETBALANCE);
+				String subscription = resultset.getString(PACKAGES);
 
 				Plan obj = new Plan(plan, networkName, networkValidity, mobileData, subscription);
 				lists.add(obj);
@@ -72,11 +76,11 @@ public class PlanDao {
 			while (resultset.next()) {
 				int scheme = resultset.getInt("plan");
 				
-				String name = resultset.getString("network_name");
-				String validity = resultset.getString("validity");
-				String data = resultset.getString("mobile_data");
+				String name = resultset.getString(PROVIDER);
+				String validity = resultset.getString(EXPIRY);
+				String data = resultset.getString(NETBALANCE);
 				
-				String subScription = resultset.getString("subscriptions");
+				String subScription = resultset.getString(PACKAGES);
 
 				 object = new Plan(scheme, name, validity,data, subScription);
 			
@@ -125,6 +129,49 @@ public class PlanDao {
 		}
 
 		return plan;
+	}
+public static Plan getAllPlanDetails(int plan) {
+		
+		Connection connection = null;
+		PreparedStatement pst = null;
+		ResultSet resultset = null;
+		Plan object=null;
+		
+		
+
+		try {
+			connection = ConnectionUtil.getConnection();
+			String sql = "select * from popular_plans where plan=?";
+			pst = connection.prepareStatement(sql);
+			pst.setInt(1, plan);
+			
+			resultset = pst.executeQuery();
+			while (resultset.next()) {
+				int idea = resultset.getInt("plan");
+				
+				String packName = resultset.getString(PROVIDER);
+				String validity = resultset.getString(EXPIRY);
+				String data = resultset.getString(NETBALANCE);
+				
+				
+				String subscription = resultset.getString(PACKAGES);
+
+				 object = new Plan(idea, packName, validity,data, subscription);
+				
+			
+			}
+
+		} catch (DatabaseException|ClassNotFoundException | SQLException e) {
+
+			throw new DatabaseException("Cannot get Validity  Details");
+		} finally {
+			ConnectionUtil.close(resultset, pst, connection);
+
+		}
+
+		return object;
+		
+
 	}
 
 

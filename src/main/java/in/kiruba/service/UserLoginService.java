@@ -22,6 +22,7 @@ public class UserLoginService {
 			
 			User userDetail = UserLoginDao.getUserDetailsByUserName(user);
 			
+			
 			if (userDetail.getPassword().equals(user.getPassword())) {
 
 				validUser = true;
