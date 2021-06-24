@@ -16,7 +16,7 @@ public class SpecialOffers {
 		SpecialOffer dao = null;
 		try {
 			dao = SpecialOfferDao.getOfferDetail(plan);
-			LocalDate date = dao.getDate();
+			LocalDate date = dao.getStage();
 			LocalDate beforeTwoDays = date.minusDays(2);
 			LocalDate beforeOneDay = beforeTwoDays.plusDays(1);
 

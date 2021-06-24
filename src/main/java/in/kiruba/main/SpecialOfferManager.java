@@ -11,7 +11,7 @@ public class SpecialOfferManager {
 	public static void main(String[] args) {
 
 		int plan = 2999;
-		LocalDate todayDate = LocalDate.of(2021, 06, 24);
+		LocalDate todayDate = LocalDate.of(2021, 06, 20);
 		SpecialOffer offer = SpecialOffers.getOfferService(plan, todayDate);
 		Logger.logger(offer);
 

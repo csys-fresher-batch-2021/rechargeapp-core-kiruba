@@ -3,86 +3,73 @@ package in.kiruba.model;
 import java.time.LocalDate;
 
 public class SpecialOffer {
-	int plan;
+	int planOfNetwork;
 	int offer;
-	String network;
-	String validity;
-	String data;
-	String subscription;
-	LocalDate date;
-
-	public int getPlan() {
-		return plan;
+	String system;
+	String power;
+	String netBalance;
+	String addition;
+	LocalDate stage;
+	public int getPlanOfNetwork() {
+		return planOfNetwork;
 	}
-
-	public void setPlan(int plan) {
-		this.plan = plan;
+	public void setPlanOfNetwork(int planOfNetwork) {
+		this.planOfNetwork = planOfNetwork;
 	}
-
 	public int getOffer() {
 		return offer;
 	}
-
 	public void setOffer(int offer) {
 		this.offer = offer;
 	}
-
-	public String getNetwork() {
-		return network;
+	public String getSystem() {
+		return system;
 	}
-
-	public void setNetwork(String network) {
-		this.network = network;
+	public void setSystem(String system) {
+		this.system = system;
 	}
-
-	public String getValidity() {
-		return validity;
+	public String getPower() {
+		return power;
 	}
-
-	public void setValidity(String validity) {
-		this.validity = validity;
+	public void setPower(String power) {
+		this.power = power;
 	}
-
-	public String getData() {
-		return data;
+	public String getNetBalance() {
+		return netBalance;
 	}
-
-	public void setData(String data) {
-		this.data = data;
+	public void setNetBalance(String netBalance) {
+		this.netBalance = netBalance;
 	}
-
-	public String getSubscription() {
-		return subscription;
+	public String getAddition() {
+		return addition;
 	}
-
-	public void setSubscription(String subscription) {
-		this.subscription = subscription;
+	public void setAddition(String addition) {
+		this.addition = addition;
 	}
-
-	public LocalDate getDate() {
-		return date;
+	public LocalDate getStage() {
+		return stage;
 	}
-
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setStage(LocalDate stage) {
+		this.stage = stage;
 	}
-
-	public SpecialOffer(int plan, int offer, String network, String validity, String data, String subscription,
-			LocalDate date) {
+	public SpecialOffer(int planOfNetwork, int offer, String system, String power, String netBalance, String addition,
+			LocalDate stage) {
 		super();
-		this.plan = plan;
+		this.planOfNetwork = planOfNetwork;
 		this.offer = offer;
-		this.network = network;
-		this.validity = validity;
-		this.data = data;
-		this.subscription = subscription;
-		this.date = date;
+		this.system = system;
+		this.power = power;
+		this.netBalance = netBalance;
+		this.addition = addition;
+		this.stage = stage;
 	}
-
 	@Override
 	public String toString() {
-		return "SpecialOffer [plan=" + plan + ", offer=" + offer + ", network=" + network + ", validity=" + validity
-				+ ", data=" + data + ", subscription=" + subscription + ", date=" + date + "]";
+		return "SpecialOffer [planOfNetwork=" + planOfNetwork + ", offer=" + offer + ", system=" + system + ", power="
+				+ power + ", netBalance=" + netBalance + ", addition=" + addition + ", stage=" + stage + "]";
 	}
+	
+	
 
+	
 }
