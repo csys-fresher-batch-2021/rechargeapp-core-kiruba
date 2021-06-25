@@ -56,6 +56,14 @@ public class PaymentDetail {
 	public int getAmount() {
 		return amount;
 	}
+	public PaymentDetail(String network, int amount, Date date, int validity) {
+		super();
+		this.network = network;
+		this.amount = amount;
+		this.date = date;
+		this.validity = validity;
+	}
+
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
@@ -86,6 +94,7 @@ public class PaymentDetail {
 		this.date = date;
 		this.validity=validity;
 	}
+	
 
 	@Override
 	public String toString() {

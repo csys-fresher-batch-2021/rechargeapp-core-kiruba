@@ -54,25 +54,5 @@ public class AmountPayableService {
 
 		return conversionInteger;
 	}
-	/**
-	 * this method return validity in payment Details.
-	 * @param amount
-	 * @param network
-	 * @return
-	 */
-
-	public static int getValidityInPayment(int amount, String network) {
-		PaymentDetail validity = null;
-		int planValidity = 0;
-		try {
-			validity = PaymentDetailDao.getTransactionDetail(amount, network);
-			planValidity = validity.getValidity();
-		} catch (ClassNotFoundException | SQLException e) {
-
-			throw new ServiceException("Cannot Find Validity");
-		}
-		
-
-		return planValidity;
-	}
+	
 }
