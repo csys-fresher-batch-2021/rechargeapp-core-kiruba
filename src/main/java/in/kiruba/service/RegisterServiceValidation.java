@@ -6,7 +6,8 @@ import in.kiruba.valid.ValidUserDetail;
 public class RegisterServiceValidation {
 	private RegisterServiceValidation() {
 
-	}/*
+	}
+	/*
 		 * this method validate the string parameters after that validation the user details are insert 
 		 * into register table
 		 */

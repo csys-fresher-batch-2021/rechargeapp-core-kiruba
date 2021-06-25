@@ -9,25 +9,25 @@ public class TestService {
 
 	public static void main(String[] args) {
 
-		String name = "Saras";
-		String key = "Saras@20";
+		String name = "Karan";
+		String key = "Karan@123";
 
-		String email = "Saras20@gmail.com";
+		String email = "karankumar88@gmail.com";
 
-		long mobileNumber = 9999998781L;
+		long mobileNumber = 9999998791L;
 
 		int age = 23;
 
-		long aadharNumber = 245676002357L;
+		long aadharNumber = 245686002357L;
 		User reg = new User(name, key, email, age, mobileNumber, aadharNumber);
 
 		if (ValidUserDetail.isValidUserDetails(name, key, email, age, mobileNumber, aadharNumber)) {
 			RegisterService.registerUser(reg);
-			String obj="Successfully registered";
+			String obj = "Successfully registered";
 			Logger.logger(obj);
 
 		} else {
-			String obj="Invalid Credentials";
+			String obj = "Invalid Credentials";
 			Logger.logger(obj);
 		}
 

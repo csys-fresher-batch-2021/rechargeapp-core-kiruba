@@ -7,8 +7,8 @@ import java.util.Date;
 
 import in.kiruba.log.Logger;
 
-public class CalculateExpriyDate {
-	private CalculateExpriyDate() {
+public class CalculateExpiryDate {
+	private CalculateExpiryDate() {
 		
 	}
 	/**
@@ -17,7 +17,7 @@ public class CalculateExpriyDate {
 	 * @return
 	 */
 	
-	public static String calculateExpriyDate(int days) {
+	public static String calculateExpiryDate(int days) {
 		String expriyDate;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	    Calendar c = Calendar.getInstance();
@@ -29,7 +29,7 @@ public class CalculateExpriyDate {
 	    return expriyDate;
 	
 	}
-	public static LocalDate calculateExpriyDateOfLocalDate(LocalDate transactionDate,int days) {
+	public static LocalDate calculateExpiryDateOfLocalDate(LocalDate transactionDate,int days) {
 		LocalDate date;
 		date=transactionDate.plusDays(days);
 		
