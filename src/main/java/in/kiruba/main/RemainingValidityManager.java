@@ -6,13 +6,15 @@ import in.kiruba.dao.PaymentDetailDao;
 import in.kiruba.exception.ServiceException;
 import in.kiruba.log.Logger;
 import in.kiruba.model.PaymentDetail;
+import in.kiruba.service.AmountPayableService;
 import in.kiruba.service.ValidityRemainder;
 
 public class RemainingValidityManager {
 
 	public static void main(String[] args) {
-		int userId = 299;
-
+		int userId = 77;
+		boolean valid=AmountPayableService.isUserAlreadyAvailable(userId);
+       if(valid) {
 		try {
 			long validityDays = ValidityRemainder.remainingValidity(userId);
 			if (validityDays != 0) {
@@ -39,6 +41,12 @@ public class RemainingValidityManager {
 			throw new ServiceException("Cannot get Validity");
 
 		}
-	}
+	  }
+       else {
+    	   String string="Invalid user Id";
+    	   Logger.logger(string);
+       }
+    	   
+       }
 
 }

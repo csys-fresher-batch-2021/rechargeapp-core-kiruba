@@ -9,7 +9,7 @@ create table popular_plans(
 select * from popular_plans;
 
 create table network(
-	
+	id serial primary key,
 	network_name varchar(20) unique not null
 );
 select * from network;

@@ -24,6 +24,14 @@ public class AdditionalPlanService {
 		return valid;
 
 	}
+	/**
+	 * this method is get additional plans.
+	 * @param plan
+	 * @param object
+	 * @return
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 
 	public static boolean additionalPlan(int plan, AdditionalPlan object) throws ClassNotFoundException, SQLException {
 		boolean valid = false;
@@ -72,6 +80,11 @@ public class AdditionalPlanService {
 		return valid;
 
 	}
+	/**
+	 * this method is find validity.
+	 * @param amount
+	 * @return
+	 */
 
 	public static int getValidity(int amount) {
 		AdditionalPlan validity = AdditionalPlanDao.getExtraPlanDetail(amount);
@@ -85,6 +98,11 @@ public class AdditionalPlanService {
 
 		return conversionInteger;
 	}
+	/**
+	 * find additional plan is already available.
+	 * @param plan
+	 * @return
+	 */
 
 	public static boolean isAdditionalPlanAlreadyAvailable(int plan) {
 		AdditionalPlanDao dao = new AdditionalPlanDao();

@@ -11,9 +11,8 @@ import in.kiruba.model.PaymentDetail;
 import in.kiruba.utill.ConnectionUtil;
 
 public class PaymentDetailDao {
-	private PaymentDetailDao() {
-
-	}
+	
+	
 
 	public static boolean payment(PaymentDetail pay) throws SQLException, ClassNotFoundException {
 		Connection connection = null;
@@ -47,17 +46,17 @@ public class PaymentDetailDao {
 	}
 
 	public static PaymentDetail getTransactionDetail(int userId) throws SQLException, ClassNotFoundException {
-		Connection connection = null;
+		Connection connections = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		PaymentDetail detail = null;
 
 		try {
-			connection = ConnectionUtil.getConnection();
+			connections = ConnectionUtil.getConnection();
 
 			String sql = "select*from payment_Details where user_id=?";
 
-			pst = connection.prepareStatement(sql);
+			pst = connections.prepareStatement(sql);
 			pst.setInt(1, userId);
 
 			rs = pst.executeQuery();
@@ -81,11 +80,39 @@ public class PaymentDetailDao {
 			throw new DatabaseException("unable to  insert  payment details");
 
 		} finally {
-			ConnectionUtil.close(connection, pst);
+			ConnectionUtil.close(connections, pst);
 
 		}
 
 		return detail;
+	}
+	public boolean findUserAlreadtExistsOrNot(int userId) {
+		String selectSQLQuery = "select exists(select user_id from payment_Details where user_id=?)";
+
+		Connection con = null;
+		PreparedStatement prepare = null;
+		ResultSet reSet = null;
+
+		boolean isValid = false;
+
+		try {
+
+			con = ConnectionUtil.getConnection();
+
+			prepare = con.prepareStatement(selectSQLQuery);
+			prepare.setInt(1, userId);
+			reSet = prepare.executeQuery();
+			if (reSet.next()) {
+				isValid = reSet.getBoolean("exists");
+			}
+
+		} catch (DatabaseException | ClassNotFoundException | SQLException | NullPointerException e) {
+
+			throw new DatabaseException("Cannot get user from database");
+		} finally {
+			ConnectionUtil.close(reSet, prepare, con);
+		}
+		return isValid;
 	}
 
 }

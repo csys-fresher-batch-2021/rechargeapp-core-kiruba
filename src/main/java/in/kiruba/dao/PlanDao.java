@@ -12,19 +12,18 @@ import in.kiruba.model.Plan;
 import in.kiruba.utill.ConnectionUtil;
 
 public class PlanDao {
-	private PlanDao() {
-   }
-	private static final String PROVIDER="network_name";
-	private static final String EXPIRY="validity";
-	private static final String NETBALANCE="mobile_data";
-	private static final String PACKAGES="subscriptions";
+	
+
+	private static final String PROVIDER = "network_name";
+	private static final String EXPIRY = "validity";
+	private static final String NETBALANCE = "mobile_data";
+	private static final String PACKAGES = "subscriptions";
 
 	public static List<Plan> getAllPlanLists() {
 		List<Plan> lists = new ArrayList<>();
 		Connection connection = null;
 		PreparedStatement pstmt = null;
 		ResultSet resultset = null;
-		
 
 		try {
 			connection = ConnectionUtil.getConnection();
@@ -41,11 +40,10 @@ public class PlanDao {
 
 				Plan obj = new Plan(plan, networkName, networkValidity, mobileData, subscription);
 				lists.add(obj);
-				
 
 			}
 
-		} catch (DatabaseException|ClassNotFoundException | SQLException e) {
+		} catch (DatabaseException | ClassNotFoundException | SQLException e) {
 
 			throw new DatabaseException("Cannot get All plan Details");
 		} finally {
@@ -54,39 +52,37 @@ public class PlanDao {
 		}
 
 		return lists;
-		
 
 	}
-	
-	public static Plan getExpriyDate(int plan,String network) {
-		
+
+	public static Plan getExpriyDate(int plan, String network) {
+
 		Connection connection = null;
 		PreparedStatement pst = null;
 		ResultSet resultset = null;
-		Plan object=null;
-		
+		Plan object = null;
 
 		try {
 			connection = ConnectionUtil.getConnection();
 			String sql = "select * from popular_plans where plan=? and network_name=?";
 			pst = connection.prepareStatement(sql);
-			pst.setInt(1,plan);
-			pst.setString(2,network);
+			pst.setInt(1, plan);
+			pst.setString(2, network);
 			resultset = pst.executeQuery();
 			while (resultset.next()) {
 				int scheme = resultset.getInt("plan");
-				
+
 				String name = resultset.getString(PROVIDER);
 				String validity = resultset.getString(EXPIRY);
 				String data = resultset.getString(NETBALANCE);
-				
+
 				String subScription = resultset.getString(PACKAGES);
 
-				 object = new Plan(scheme, name, validity,data, subScription);
-			
+				object = new Plan(scheme, name, validity, data, subScription);
+
 			}
 
-		} catch (DatabaseException|ClassNotFoundException | SQLException e) {
+		} catch (DatabaseException | ClassNotFoundException | SQLException e) {
 
 			throw new DatabaseException("Cannot get Validity  Details");
 		} finally {
@@ -95,32 +91,29 @@ public class PlanDao {
 		}
 
 		return object;
-		
 
 	}
+
 	public static List<Integer> getAllPlans() {
 		List<Integer> plan = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 
 		try {
 			conn = ConnectionUtil.getConnection();
 			String sql = "select * from popular_plans";
 			pstmt = conn.prepareStatement(sql);
-			
+
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				int schemes = rs.getInt("plan");
-				
-				
+
 				plan.add(schemes);
-				
 
 			}
 
-		} catch (DatabaseException|ClassNotFoundException | SQLException e) {
+		} catch (DatabaseException | ClassNotFoundException | SQLException e) {
 
 			throw new DatabaseException("Cannot get All plans");
 		} finally {
@@ -130,38 +123,35 @@ public class PlanDao {
 
 		return plan;
 	}
-public static Plan getAllPlanDetails(int plan) {
-		
+
+	public static Plan getAllPlanDetails(int plan) {
+
 		Connection connection = null;
 		PreparedStatement pst = null;
 		ResultSet resultset = null;
-		Plan object=null;
-		
-		
+		Plan object = null;
 
 		try {
 			connection = ConnectionUtil.getConnection();
 			String sql = "select * from popular_plans where plan=?";
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, plan);
-			
+
 			resultset = pst.executeQuery();
 			while (resultset.next()) {
 				int idea = resultset.getInt("plan");
-				
+
 				String packName = resultset.getString(PROVIDER);
 				String validity = resultset.getString(EXPIRY);
 				String data = resultset.getString(NETBALANCE);
-				
-				
+
 				String subscription = resultset.getString(PACKAGES);
 
-				 object = new Plan(idea, packName, validity,data, subscription);
-				
-			
+				object = new Plan(idea, packName, validity, data, subscription);
+
 			}
 
-		} catch (DatabaseException|ClassNotFoundException | SQLException e) {
+		} catch (DatabaseException | ClassNotFoundException | SQLException e) {
 
 			throw new DatabaseException("Cannot get Validity  Details");
 		} finally {
@@ -170,9 +160,38 @@ public static Plan getAllPlanDetails(int plan) {
 		}
 
 		return object;
-		
 
 	}
 
+	public boolean findPlanAlreadyExistsOrNot(int scheme,String system) {
+		String selectSQLQuery = "select exists(select plan,network_name from popular_plans where plan=? and network_name=?)";
+
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet = null;
+
+		boolean isExists = false;
+
+		try {
+
+			connection = ConnectionUtil.getConnection();
+
+			prepareStatement = connection.prepareStatement(selectSQLQuery);
+			prepareStatement.setInt(1, scheme);
+			prepareStatement.setString(2,system);
+			
+			resultSet = prepareStatement.executeQuery();
+			if (resultSet.next()) {
+				isExists = resultSet.getBoolean("exists");
+			}
+
+		} catch (DatabaseException | ClassNotFoundException | SQLException | NullPointerException e) {
+
+			throw new DatabaseException("Cannot get user from database");
+		} finally {
+			ConnectionUtil.close(resultSet, prepareStatement, connection);
+		}
+		return isExists;
+	}
 
 }

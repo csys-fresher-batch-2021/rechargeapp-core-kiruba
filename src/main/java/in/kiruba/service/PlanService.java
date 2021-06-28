@@ -102,5 +102,15 @@ public class PlanService {
 		return detail;
 
 	}
+	/**
+	 * this method is find the scheme is already available or not.
+	 * @param plan
+	 * @param network
+	 * @return
+	 */
+	public static  boolean isSchemeAlreadyAvailable(int plan,String network) {
+		PlanDao dao = new PlanDao();
+		return dao.findPlanAlreadyExistsOrNot(plan,network);
+	}
 
 }

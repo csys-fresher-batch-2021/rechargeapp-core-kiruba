@@ -54,5 +54,14 @@ public class AmountPayableService {
 
 		return conversionInteger;
 	}
+	/**
+	 * this method is find the given user id is available or not.
+	 * @param userId
+	 * @return
+	 */
+	public static  boolean isUserAlreadyAvailable(int userId) {
+		PaymentDetailDao dao = new PaymentDetailDao();
+		return dao.findUserAlreadtExistsOrNot(userId);
+	}
 	
 }
