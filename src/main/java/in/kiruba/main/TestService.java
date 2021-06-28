@@ -20,15 +20,21 @@ public class TestService {
 
 		long aadharNumber = 245686002357L;
 		User reg = new User(name, key, email, age, mobileNumber, aadharNumber);
+		boolean valid = RegisterService.isUserAlreadyAvailable(reg);
 
 		if (ValidUserDetail.isValidUserDetails(name, key, email, age, mobileNumber, aadharNumber)) {
-			RegisterService.registerUser(reg);
-			String obj = "Successfully registered";
-			Logger.logger(obj);
+			if (!valid) {
+				RegisterService.registerUser(reg);
+				String obj = "Successfully registered";
+				Logger.logger(obj);
 
+			} else {
+				String obj = "User is Already Exists";
+				Logger.logger(obj);
+			}
 		} else {
-			String obj = "Invalid Credentials";
-			Logger.logger(obj);
+			String statement = "Invalid credentials";
+			Logger.logger(statement);
 		}
 
 	}

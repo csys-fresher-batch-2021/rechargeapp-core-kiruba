@@ -2,14 +2,14 @@ package in.kiruba.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import in.kiruba.exception.DatabaseException;
 import in.kiruba.model.User;
 import in.kiruba.utill.ConnectionUtil;
 
 public class RegisterDao {
-	private RegisterDao() {
+	public RegisterDao() {
 		//default constructor
 
 	}
@@ -43,5 +43,44 @@ public class RegisterDao {
 		}
 
 	}
+
+	public boolean findUserAlreadtExistsOrNot(User user)  {
+		String selectSQLQuery = "select exists(select username,email,mobile_Number,adhaar_Number from users where username=? and email=? and mobile_Number=? and adhaar_Number=?)";
+				
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet = null;
+
+		boolean isExists = false;
+
+		try {
+
+			connection = ConnectionUtil.getConnection();
+			Long mobileNumber=user.getMobileNo();
+			Long adhaarNumber=user.getAdhaarNo();
+
+			prepareStatement = connection.prepareStatement(selectSQLQuery);
+			prepareStatement.setString(1,user.getName());
+			prepareStatement.setString(2,user.getEmail());
+			prepareStatement.setString(3,mobileNumber.toString());
+			prepareStatement.setString(4,adhaarNumber.toString());
+			
+			
+			resultSet = prepareStatement.executeQuery();
+			if (resultSet.next()) {
+				isExists = resultSet.getBoolean("exists");
+			}
+
+		} catch (DatabaseException | ClassNotFoundException | SQLException |NullPointerException e) {
+			
+				throw new DatabaseException("Cannot get user from database");
+		     
+			
+		} finally {
+			ConnectionUtil.close(resultSet, prepareStatement, connection);
+		}
+		return isExists;
+	}
+	
 
 }

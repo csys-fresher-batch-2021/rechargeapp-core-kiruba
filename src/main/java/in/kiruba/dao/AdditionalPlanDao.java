@@ -30,7 +30,7 @@ public class AdditionalPlanDao {
 			pst.executeUpdate();
 
 		} catch (DatabaseException e) {
-			
+
 			throw new DatabaseException("unable to  insert  Additional Plan details");
 
 		} finally {
@@ -99,7 +99,7 @@ public class AdditionalPlanDao {
 			pst.executeUpdate();
 
 		} catch (DatabaseException e) {
-			
+
 			throw new DatabaseException("unable to  insert  Additional Plan details");
 
 		} finally {
@@ -139,5 +139,4 @@ public class AdditionalPlanDao {
 		return isExists;
 	}
 
-	
 }

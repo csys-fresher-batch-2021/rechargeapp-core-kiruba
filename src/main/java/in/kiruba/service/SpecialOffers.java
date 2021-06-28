@@ -11,6 +11,12 @@ public class SpecialOffers {
 	private SpecialOffers() {
 
 	}
+	/**
+	 * this method is used to get offers.
+	 * @param plan
+	 * @param todayDate
+	 * @return
+	 */
 
 	public static SpecialOffer getOfferService(int plan, LocalDate todayDate) {
 		SpecialOffer dao = null;

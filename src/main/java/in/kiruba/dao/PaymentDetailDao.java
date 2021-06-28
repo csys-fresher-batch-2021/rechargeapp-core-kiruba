@@ -11,9 +11,8 @@ import in.kiruba.model.PaymentDetail;
 import in.kiruba.utill.ConnectionUtil;
 
 public class PaymentDetailDao {
-	private PaymentDetailDao() {
-
-	}
+	
+	
 
 	public static boolean payment(PaymentDetail pay) throws SQLException, ClassNotFoundException {
 		Connection connection = null;
@@ -86,6 +85,34 @@ public class PaymentDetailDao {
 		}
 
 		return detail;
+	}
+	public boolean findUserAlreadtExistsOrNot(int userId) {
+		String selectSQLQuery = "select exists(select user_id from payment_Details where user_id=?)";
+
+		Connection connection = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet = null;
+
+		boolean isExists = false;
+
+		try {
+
+			connection = ConnectionUtil.getConnection();
+
+			prepareStatement = connection.prepareStatement(selectSQLQuery);
+			prepareStatement.setInt(1, userId);
+			resultSet = prepareStatement.executeQuery();
+			if (resultSet.next()) {
+				isExists = resultSet.getBoolean("exists");
+			}
+
+		} catch (DatabaseException | ClassNotFoundException | SQLException | NullPointerException e) {
+
+			throw new DatabaseException("Cannot get user from database");
+		} finally {
+			ConnectionUtil.close(resultSet, prepareStatement, connection);
+		}
+		return isExists;
 	}
 
 }

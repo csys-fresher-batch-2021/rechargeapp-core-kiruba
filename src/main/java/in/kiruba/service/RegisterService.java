@@ -25,4 +25,9 @@ public class RegisterService {
 		return true;
 	}
 	
+	public static  boolean isUserAlreadyAvailable(User user) {
+		RegisterDao dao = new RegisterDao();
+		return dao.findUserAlreadtExistsOrNot(user);
+	}
+	
 }
