@@ -11,10 +11,10 @@ public class AddAdminManager {
 
 	public static void main(String[] args) {
 		String adminName="Varun";
-		String adminPassword="Sara#123";
-		AdminLogin obj=new AdminLogin(adminName,adminPassword);
+		String adminKey="Sara#123";
+		AdminLogin obj=new AdminLogin(adminName,adminKey);
 		try {
-			if(AdminService.checkAdminExistsOrNot(adminName, adminPassword)) {
+			if(AdminService.checkAdminExistsOrNot(adminName, adminKey)) {
 				String object="Admin is Alreay Exists";
 				Logger.logger(object);
 			}else {

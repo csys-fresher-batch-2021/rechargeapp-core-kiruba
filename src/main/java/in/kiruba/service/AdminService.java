@@ -19,21 +19,18 @@ public class AdminService {
 
 		} catch (ServiceException e) {
 
-			e.printStackTrace();
 			throw new ServiceException("Cannot call AdminLoginDao");
 		}
 		return true;
 	}
 
 	public static boolean addAdmin(AdminLogin obj) {
-		
+
 		try {
 			AdminLoginDao.admin(obj);
-			
 
 		} catch (ServiceException e) {
 
-			e.printStackTrace();
 			throw new ServiceException("Cannot call");
 		}
 		return true;
@@ -56,16 +53,16 @@ public class AdminService {
 				throw new ServiceException("Cannot get Admin Details");
 			}
 
-			
 		}
 		return validUser;
 
 	}
 
-	public static boolean checkAdminExistsOrNot(String userName, String password) throws ClassNotFoundException, SQLException {
+	public static boolean checkAdminExistsOrNot(String userName, String password)
+			throws ClassNotFoundException, SQLException {
 		boolean validUser = false;
 		if (RegisterValidation.isValidUserName(userName) && RegisterValidation.isValidPassword(password)) {
-           Set<String> keys = AdminLoginDao.getAllAdminDetails().keySet();
+			Set<String> keys = AdminLoginDao.getAllAdminDetails().keySet();
 			for (String key : keys) {
 				String value = AdminLoginDao.getAllAdminDetails().get(key);
 				if (userName.equals(key) && password.equals(value)) {
@@ -73,7 +70,7 @@ public class AdminService {
 					break;
 				}
 			}
-		}		
+		}
 		return validUser;
 
 	}
@@ -87,7 +84,8 @@ public class AdminService {
 
 		return valid;
 	}
-	public static  boolean isAdminAlreadyAvailable(AdminLogin detail) {
+
+	public static boolean isAdminAlreadyAvailable(AdminLogin detail) {
 		AdminLoginDao dao = new AdminLoginDao();
 		return dao.findAdminAlreadtExistsOrNot(detail);
 	}

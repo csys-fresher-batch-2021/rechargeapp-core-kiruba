@@ -8,8 +8,8 @@ public class AdminManager {
 
 	public static void main(String[] args) {
 		String adminName="Livith";
-		String adminPassword="Sara@123";
-		AdminLogin admin=new AdminLogin(adminName,adminPassword);
+		String adminKey="Sara@123";
+		AdminLogin admin=new AdminLogin(adminName,adminKey);
 		boolean valid=AdminService.isAdminAlreadyAvailable(admin);
 		if(valid) {
 			

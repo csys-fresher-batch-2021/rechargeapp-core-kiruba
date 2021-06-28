@@ -46,17 +46,17 @@ public class PaymentDetailDao {
 	}
 
 	public static PaymentDetail getTransactionDetail(int userId) throws SQLException, ClassNotFoundException {
-		Connection connection = null;
+		Connection connections = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		PaymentDetail detail = null;
 
 		try {
-			connection = ConnectionUtil.getConnection();
+			connections = ConnectionUtil.getConnection();
 
 			String sql = "select*from payment_Details where user_id=?";
 
-			pst = connection.prepareStatement(sql);
+			pst = connections.prepareStatement(sql);
 			pst.setInt(1, userId);
 
 			rs = pst.executeQuery();
@@ -80,7 +80,7 @@ public class PaymentDetailDao {
 			throw new DatabaseException("unable to  insert  payment details");
 
 		} finally {
-			ConnectionUtil.close(connection, pst);
+			ConnectionUtil.close(connections, pst);
 
 		}
 
@@ -89,30 +89,30 @@ public class PaymentDetailDao {
 	public boolean findUserAlreadtExistsOrNot(int userId) {
 		String selectSQLQuery = "select exists(select user_id from payment_Details where user_id=?)";
 
-		Connection connection = null;
-		PreparedStatement prepareStatement = null;
-		ResultSet resultSet = null;
+		Connection con = null;
+		PreparedStatement prepare = null;
+		ResultSet reSet = null;
 
-		boolean isExists = false;
+		boolean isValid = false;
 
 		try {
 
-			connection = ConnectionUtil.getConnection();
+			con = ConnectionUtil.getConnection();
 
-			prepareStatement = connection.prepareStatement(selectSQLQuery);
-			prepareStatement.setInt(1, userId);
-			resultSet = prepareStatement.executeQuery();
-			if (resultSet.next()) {
-				isExists = resultSet.getBoolean("exists");
+			prepare = con.prepareStatement(selectSQLQuery);
+			prepare.setInt(1, userId);
+			reSet = prepare.executeQuery();
+			if (reSet.next()) {
+				isValid = reSet.getBoolean("exists");
 			}
 
 		} catch (DatabaseException | ClassNotFoundException | SQLException | NullPointerException e) {
 
 			throw new DatabaseException("Cannot get user from database");
 		} finally {
-			ConnectionUtil.close(resultSet, prepareStatement, connection);
+			ConnectionUtil.close(reSet, prepare, con);
 		}
-		return isExists;
+		return isValid;
 	}
 
 }

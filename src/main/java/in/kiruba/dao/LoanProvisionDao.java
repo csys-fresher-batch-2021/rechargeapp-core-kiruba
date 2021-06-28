@@ -10,9 +10,9 @@ import in.kiruba.utill.ConnectionUtil;
 
 public class LoanProvisionDao {
 	private LoanProvisionDao() {
-		
+
 	}
-	
+
 	public static boolean loanPayment(int userId) throws SQLException, ClassNotFoundException {
 		Connection connection = null;
 		PreparedStatement pst = null;
@@ -25,7 +25,6 @@ public class LoanProvisionDao {
 
 			pst = connection.prepareStatement(sql);
 			pst.setInt(1, userId);
-			
 
 			result = pst.executeUpdate();
 
@@ -42,36 +41,33 @@ public class LoanProvisionDao {
 	}
 
 	public static boolean isValidUserForLoan(int userId) {
-		
-		
-			String selectSQLQuery = "select exists(select user_Id from loan where user_Id=?)";
 
-			Connection connection = null;
-			PreparedStatement prepareStatement = null;
-			ResultSet resultSet = null;
+		String selectSQLQuery = "select exists(select user_Id from loan where user_Id=?)";
 
-			boolean isExists = false;
+		Connection con = null;
+		PreparedStatement prepareStatement = null;
+		ResultSet resultSet = null;
 
-			try {
+		boolean isExists = false;
 
-				connection = ConnectionUtil.getConnection();
+		try {
 
-				prepareStatement = connection.prepareStatement(selectSQLQuery);
-				prepareStatement.setInt(1,userId);
-				resultSet = prepareStatement.executeQuery();
-				if (resultSet.next()) {
-					isExists = resultSet.getBoolean("exists");
-				}
-
-			} catch (DatabaseException | ClassNotFoundException | SQLException | NullPointerException e) {
-
-				throw new DatabaseException("Cannot get user from Loan database");
-			} finally {
-				ConnectionUtil.close(resultSet, prepareStatement, connection);
+			con = ConnectionUtil.getConnection();
+			prepareStatement = con.prepareStatement(selectSQLQuery);
+			prepareStatement.setInt(1, userId);
+			resultSet = prepareStatement.executeQuery();
+			if (resultSet.next()) {
+				isExists = resultSet.getBoolean("exists");
 			}
-			return isExists;
-		
+
+		} catch (DatabaseException | ClassNotFoundException | SQLException | NullPointerException e) {
+
+			throw new DatabaseException("Cannot get user from Loan database");
+		} finally {
+			ConnectionUtil.close(resultSet, prepareStatement, con);
+		}
+		return isExists;
+
 	}
-	 
 
 }

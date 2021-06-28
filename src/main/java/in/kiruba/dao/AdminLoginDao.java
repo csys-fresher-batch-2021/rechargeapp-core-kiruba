@@ -32,7 +32,7 @@ public class AdminLoginDao {
 
 		} catch (ClassNotFoundException | SQLException e) {
 
-			e.printStackTrace();
+			throw new DatabaseException("Can't get admin  from database"); 
 
 		} finally {
 			ConnectionUtil.close(connection, pst);
@@ -64,7 +64,7 @@ public class AdminLoginDao {
 
 		} catch (DatabaseException e) {
 
-			throw new DatabaseException("Can't get user  from database");
+			throw new DatabaseException("Can't get admin  from database");
 		} finally {
 			ConnectionUtil.close(resultSet, prepareStatement, connection);
 		}
@@ -95,8 +95,8 @@ public class AdminLoginDao {
 			}
 
 		} catch (DatabaseException e) {
-			e.printStackTrace();
-			throw new DatabaseException("Can't get user  from database");
+			
+			throw new DatabaseException("Can't get admin  from database");
 		} finally {
 			ConnectionUtil.close(resultSet, prepareStatement, connection);
 		}
@@ -126,7 +126,7 @@ public class AdminLoginDao {
 
 		} catch (DatabaseException | ClassNotFoundException | SQLException | NullPointerException e) {
 
-			throw new DatabaseException("Cannot get user from database");
+			throw new DatabaseException("Cannot get admin from database");
 		} finally {
 			ConnectionUtil.close(resultSet, prepareStatement, connection);
 		}
