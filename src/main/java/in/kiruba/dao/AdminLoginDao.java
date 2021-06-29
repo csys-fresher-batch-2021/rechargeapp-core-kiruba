@@ -32,7 +32,7 @@ public class AdminLoginDao {
 
 		} catch (ClassNotFoundException | SQLException e) {
 
-			throw new DatabaseException("Can't get admin  from database"); 
+			throw new DatabaseException("Cannot insert admin details to database"); 
 
 		} finally {
 			ConnectionUtil.close(connection, pst);
@@ -64,7 +64,7 @@ public class AdminLoginDao {
 
 		} catch (DatabaseException e) {
 
-			throw new DatabaseException("Can't get admin  from database");
+			throw new DatabaseException("Can't get admin details from database");
 		} finally {
 			ConnectionUtil.close(resultSet, prepareStatement, connection);
 		}
@@ -96,7 +96,7 @@ public class AdminLoginDao {
 
 		} catch (DatabaseException e) {
 			
-			throw new DatabaseException("Can't get admin  from database");
+			throw new DatabaseException("Cannot get admin details from database");
 		} finally {
 			ConnectionUtil.close(resultSet, prepareStatement, connection);
 		}
@@ -126,7 +126,7 @@ public class AdminLoginDao {
 
 		} catch (DatabaseException | ClassNotFoundException | SQLException | NullPointerException e) {
 
-			throw new DatabaseException("Cannot get admin from database");
+			throw new DatabaseException("Cannot find admin is already exists or not");
 		} finally {
 			ConnectionUtil.close(resultSet, prepareStatement, connection);
 		}
