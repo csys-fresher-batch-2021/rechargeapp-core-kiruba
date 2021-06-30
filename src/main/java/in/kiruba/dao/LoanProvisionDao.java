@@ -6,14 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import in.kiruba.exception.DatabaseException;
+import in.kiruba.impl.LoanProvisionImp;
 import in.kiruba.utill.ConnectionUtil;
 
-public class LoanProvisionDao {
-	private LoanProvisionDao() {
+public class LoanProvisionDao implements LoanProvisionImp{
+	
 
-	}
-
-	public static boolean loanPayment(int userId) throws SQLException, ClassNotFoundException {
+	public  boolean loanPayment(int userId) throws SQLException, ClassNotFoundException {
 		Connection connection = null;
 		PreparedStatement pst = null;
 		int result = 0;
@@ -40,7 +39,7 @@ public class LoanProvisionDao {
 
 	}
 
-	public static boolean isValidUserForLoan(int userId) {
+	public  boolean isValidUserForLoan(int userId) {
 
 		String selectSQLQuery = "select exists(select user_Id from loan where user_Id=?)";
 

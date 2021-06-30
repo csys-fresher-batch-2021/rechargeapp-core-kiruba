@@ -1,6 +1,7 @@
 package in.kiruba.main;
 
 import in.kiruba.dao.AdditionalPlanDao;
+import in.kiruba.impl.AdditionalPlanImp;
 import in.kiruba.log.Logger;
 import in.kiruba.model.AdditionalPlan;
 import in.kiruba.service.AdditionalPlanService;
@@ -13,7 +14,8 @@ public class AdditionalPlanManager {
 		boolean additionalValid = AdditionalPlanService.isAdditionalPlanAlreadyAvailable(scheme);
 
 		if (additionalValid) {
-			AdditionalPlan validity = AdditionalPlanDao.getExtraPlanDetail(scheme);
+			AdditionalPlanImp dao=new AdditionalPlanDao();
+			AdditionalPlan validity = dao.getExtraPlanDetail(scheme);
 			String planValidity = validity.getValidity();
 			String network = validity.getNetwork();
 			String data = validity.getData();

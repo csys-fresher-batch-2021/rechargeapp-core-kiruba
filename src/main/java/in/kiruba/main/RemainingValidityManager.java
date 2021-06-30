@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import in.kiruba.dao.PaymentDetailDao;
 import in.kiruba.exception.ServiceException;
+import in.kiruba.impl.PaymentDetailImp;
 import in.kiruba.log.Logger;
 import in.kiruba.model.PaymentDetail;
 import in.kiruba.service.AmountPayableService;
@@ -18,7 +19,8 @@ public class RemainingValidityManager {
 		try {
 			long validityDays = ValidityRemainder.remainingValidity(userId);
 			if (validityDays != 0) {
-				PaymentDetail detail = PaymentDetailDao.getTransactionDetail(userId);
+				PaymentDetailImp dao=new PaymentDetailDao();
+				PaymentDetail detail = dao.getTransactionDetail(userId);
 				int amount = detail.getPlan();
 				String network = detail.getNetwork();
 				Date date = detail.getDate();

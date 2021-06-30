@@ -10,8 +10,8 @@ import in.kiruba.service.AdminService;
 public class AddAdminManager {
 
 	public static void main(String[] args) {
-		String adminName="Varun";
-		String adminKey="Sara#123";
+		String adminName="Vanitha";
+		String adminKey="Vani#999";
 		AdminLogin obj=new AdminLogin(adminName,adminKey);
 		try {
 			if(AdminService.checkAdminExistsOrNot(adminName, adminKey)) {

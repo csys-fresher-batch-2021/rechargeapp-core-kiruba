@@ -10,12 +10,13 @@ import java.util.List;
 import java.util.Map;
 
 import in.kiruba.exception.DatabaseException;
+import in.kiruba.impl.AdminLoginImp;
 import in.kiruba.model.AdminLogin;
 import in.kiruba.utill.ConnectionUtil;
 
-public class AdminLoginDao {
+public class AdminLoginDao implements AdminLoginImp{
 
-	public static void admin(AdminLogin admin) {
+	public  void admin(AdminLogin admin) {
 		Connection connection = null;
 		PreparedStatement pst = null;
 
@@ -40,7 +41,7 @@ public class AdminLoginDao {
 		}
 	}
 
-	public static AdminLogin getUserDetailsByUserName(AdminLogin admin) throws ClassNotFoundException, SQLException {
+	public  AdminLogin getUserDetailsByUserName(AdminLogin admin) throws ClassNotFoundException, SQLException {
 		String selectSQLQuery = " select * from admin where admin_Name=? ";
 		Connection connection = null;
 		PreparedStatement prepareStatement = null;
@@ -72,7 +73,7 @@ public class AdminLoginDao {
 
 	}
 
-	public static Map<String, String> getAllAdminDetails() throws SQLException, ClassNotFoundException {
+	public  Map<String, String> getAllAdminDetails() throws SQLException, ClassNotFoundException {
 		String selectSQLQuery = " select * from admin ";
 		Connection connection = null;
 		PreparedStatement prepareStatement = null;

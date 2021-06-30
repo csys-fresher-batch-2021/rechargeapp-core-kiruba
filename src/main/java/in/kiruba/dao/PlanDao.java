@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.kiruba.exception.DatabaseException;
+import in.kiruba.impl.PlanImp;
 import in.kiruba.model.Plan;
 import in.kiruba.utill.ConnectionUtil;
 
-public class PlanDao {
+public class PlanDao implements PlanImp{
 	
 
 	private static final String PROVIDER = "network_name";
@@ -19,7 +20,7 @@ public class PlanDao {
 	private static final String NETBALANCE = "mobile_data";
 	private static final String PACKAGES = "subscriptions";
 
-	public static List<Plan> getAllPlanLists() {
+	public  List<Plan> getAllPlanLists() {
 		List<Plan> lists = new ArrayList<>();
 		Connection connection = null;
 		PreparedStatement pstmt = null;
@@ -55,7 +56,7 @@ public class PlanDao {
 
 	}
 
-	public static Plan getExpriyDate(int plan, String network) {
+	public  Plan getExpriyDate(int plan, String network) {
 
 		Connection connection = null;
 		PreparedStatement pst = null;
@@ -94,7 +95,7 @@ public class PlanDao {
 
 	}
 
-	public static List<Integer> getAllPlans() {
+	public  List<Integer> getAllPlans() {
 		List<Integer> plan = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -124,7 +125,7 @@ public class PlanDao {
 		return plan;
 	}
 
-	public static Plan getAllPlanDetails(int plan) {
+	public  Plan getAllPlanDetails(int plan) {
 
 		Connection connection = null;
 		PreparedStatement pst = null;

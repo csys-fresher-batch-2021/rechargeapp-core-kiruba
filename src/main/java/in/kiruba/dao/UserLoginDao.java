@@ -7,16 +7,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import in.kiruba.exception.DatabaseException;
+import in.kiruba.impl.UserLoginImp;
 import in.kiruba.model.User;
 import in.kiruba.utill.ConnectionUtil;
 
-public class UserLoginDao {
+public class UserLoginDao implements UserLoginImp {
 	public UserLoginDao() {
 		// default constructor
 
 	}
 
-	public static User getUserDetailsByUserName(User user) {
+	public  User getUserDetailsByUserName(User user) {
 		String selectSQLQuery = " select * from users where username=?";
 		Connection connection = null;
 		PreparedStatement prepareStatement = null;

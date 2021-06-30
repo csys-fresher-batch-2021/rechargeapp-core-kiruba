@@ -6,12 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import in.kiruba.exception.DatabaseException;
+import in.kiruba.impl.AdditionalPlanImp;
 import in.kiruba.model.AdditionalPlan;
 import in.kiruba.utill.ConnectionUtil;
 
-public class AdditionalPlanDao {
+public class AdditionalPlanDao implements AdditionalPlanImp{
 
-	public static void extraPlan(AdditionalPlan plan) throws ClassNotFoundException, SQLException {
+	public  void extraPlan(AdditionalPlan plan) throws ClassNotFoundException, SQLException {
 		Connection connection = null;
 		PreparedStatement pst = null;
 
@@ -40,7 +41,7 @@ public class AdditionalPlanDao {
 
 	}
 
-	public static AdditionalPlan getExtraPlanDetail(int plan) {
+	public  AdditionalPlan getExtraPlanDetail(int plan) {
 
 		Connection connection = null;
 		PreparedStatement pst = null;
@@ -78,7 +79,7 @@ public class AdditionalPlanDao {
 		return object;
 	}
 
-	public static void additionalPlan(AdditionalPlan plan) throws ClassNotFoundException, SQLException {
+	public  void additionalPlan(AdditionalPlan plan) throws ClassNotFoundException, SQLException {
 		Connection connection = null;
 		PreparedStatement pst = null;
 

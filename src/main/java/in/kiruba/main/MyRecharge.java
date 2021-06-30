@@ -5,6 +5,7 @@ import java.util.Date;
 
 import in.kiruba.dao.PaymentDetailDao;
 import in.kiruba.exception.ServiceException;
+import in.kiruba.impl.PaymentDetailImp;
 import in.kiruba.log.Logger;
 import in.kiruba.model.PaymentDetail;
 import in.kiruba.service.AmountPayableService;
@@ -16,8 +17,9 @@ public class MyRecharge {
 		PaymentDetail detail = null;
 		boolean valid = AmountPayableService.isUserAlreadyAvailable(userId);
 		if (valid) {
+			PaymentDetailImp dao=new PaymentDetailDao();
 			try {
-				detail = PaymentDetailDao.getTransactionDetail(userId);
+				detail = dao.getTransactionDetail(userId);
 				int payment = detail.getPlan();
 				String networkName = detail.getNetwork();
 				Date rechargeDate = detail.getDate();

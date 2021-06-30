@@ -1,6 +1,7 @@
 package in.kiruba.service;
 
 import in.kiruba.dao.UserLoginDao;
+import in.kiruba.impl.UserLoginImp;
 import in.kiruba.model.User;
 
 public class UserLoginService {
@@ -19,8 +20,9 @@ public class UserLoginService {
 		
 			
 			User user = new User(userName, password);
+			UserLoginImp dao=new UserLoginDao();
 			
-			User userDetail = UserLoginDao.getUserDetailsByUserName(user);
+			User userDetail = dao.getUserDetailsByUserName(user);
 			
 			
 			if (userDetail.getPassword().equals(user.getPassword())) {

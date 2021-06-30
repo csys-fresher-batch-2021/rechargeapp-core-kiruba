@@ -8,15 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.kiruba.exception.DatabaseException;
+import in.kiruba.impl.ParticularPlanImp;
 import in.kiruba.model.Plan;
 import in.kiruba.utill.ConnectionUtil;
 
-public class ParticularPlan {
-	private ParticularPlan() {
-		
-	}
+public class ParticularPlan implements ParticularPlanImp{
 	
-	public static List<Plan> getParticularNetworkList(String network) {
+	
+	public  List<Plan> getParticularNetworkList(String network) {
 		List<Plan> list = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pst = null;
