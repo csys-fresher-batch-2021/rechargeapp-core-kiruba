@@ -7,14 +7,15 @@ import java.sql.SQLException;
 import java.util.Date;
 
 import in.kiruba.exception.DatabaseException;
+import in.kiruba.impl.PaymentDetailImp;
 import in.kiruba.model.PaymentDetail;
 import in.kiruba.utill.ConnectionUtil;
 
-public class PaymentDetailDao {
+public class PaymentDetailDao implements PaymentDetailImp{
 	
 	
 
-	public static boolean payment(PaymentDetail pay) throws SQLException, ClassNotFoundException {
+	public  boolean payment(PaymentDetail pay) throws SQLException, ClassNotFoundException {
 		Connection connection = null;
 		PreparedStatement pst = null;
 		int result = 0;
@@ -45,7 +46,7 @@ public class PaymentDetailDao {
 
 	}
 
-	public static PaymentDetail getTransactionDetail(int userId) throws SQLException, ClassNotFoundException {
+	public  PaymentDetail getTransactionDetail(int userId) throws SQLException, ClassNotFoundException {
 		Connection connections = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;

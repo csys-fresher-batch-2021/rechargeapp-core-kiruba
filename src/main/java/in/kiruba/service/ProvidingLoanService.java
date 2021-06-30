@@ -9,6 +9,8 @@ import java.util.Date;
 import in.kiruba.dao.LoanProvisionDao;
 import in.kiruba.dao.PaymentDetailDao;
 import in.kiruba.exception.ServiceException;
+import in.kiruba.impl.LoanProvisionImp;
+import in.kiruba.impl.PaymentDetailImp;
 import in.kiruba.log.Logger;
 import in.kiruba.model.PaymentDetail;
 
@@ -20,8 +22,9 @@ public class ProvidingLoanService {
 	public static boolean providingLoan(int userId) {
 		boolean valid = false;
 		PaymentDetail payment;
+		PaymentDetailImp dao=new PaymentDetailDao();
 		try {
-			payment = PaymentDetailDao.getTransactionDetail(userId);
+			payment = dao.getTransactionDetail(userId);
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new ServiceException("Cannot find payment details");
 		}
@@ -74,10 +77,11 @@ public class ProvidingLoanService {
 	public static boolean userChoice(int choice, int userId) {
 		boolean valid = false;
 		boolean dao;
+		LoanProvisionImp daoObject=new LoanProvisionDao();
 		if (choice == 1) {
 			try {
-				if (!LoanProvisionDao.isValidUserForLoan(userId)) {
-					dao = LoanProvisionDao.loanPayment(userId);
+				if (!daoObject.isValidUserForLoan(userId)) {
+					dao = daoObject.loanPayment(userId);
 					if (dao) {
 						String string = "DONE";
 						Logger.logger(string);

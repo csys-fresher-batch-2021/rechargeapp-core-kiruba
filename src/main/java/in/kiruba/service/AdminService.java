@@ -5,6 +5,7 @@ import java.util.Set;
 
 import in.kiruba.dao.AdminLoginDao;
 import in.kiruba.exception.ServiceException;
+import in.kiruba.impl.AdminLoginImp;
 import in.kiruba.model.AdminLogin;
 import in.kiruba.validation.RegisterValidation;
 
@@ -14,8 +15,9 @@ public class AdminService {
 	}
 
 	public static boolean adminLogin(AdminLogin obj) {
+		AdminLoginImp dao=new AdminLoginDao();
 		try {
-			AdminLoginDao.admin(obj);
+			dao.admin(obj);
 
 		} catch (ServiceException e) {
 
@@ -25,9 +27,10 @@ public class AdminService {
 	}
 
 	public static boolean addAdmin(AdminLogin obj) {
+		AdminLoginImp dao=new AdminLoginDao();
 
 		try {
-			AdminLoginDao.admin(obj);
+			dao.admin(obj);
 
 		} catch (ServiceException e) {
 
@@ -38,13 +41,14 @@ public class AdminService {
 
 	public static boolean login(String userName, String password) {
 		boolean validUser = false;
+		AdminLoginImp dao=new AdminLoginDao();
 		if (RegisterValidation.isValidUserName(userName) && RegisterValidation.isValidPassword(password)) {
 
 			AdminLogin user = new AdminLogin(userName, password);
 
 			AdminLogin userDetail = null;
 			try {
-				userDetail = AdminLoginDao.getUserDetailsByUserName(user);
+				userDetail = dao.getUserDetailsByUserName(user);
 				if ((userDetail.getAdminPassword()).equalsIgnoreCase(user.getAdminPassword())) {
 
 					validUser = true;
@@ -60,11 +64,12 @@ public class AdminService {
 
 	public static boolean checkAdminExistsOrNot(String userName, String password)
 			throws ClassNotFoundException, SQLException {
+		AdminLoginImp dao=new AdminLoginDao();
 		boolean validUser = false;
 		if (RegisterValidation.isValidUserName(userName) && RegisterValidation.isValidPassword(password)) {
-			Set<String> keys = AdminLoginDao.getAllAdminDetails().keySet();
+			Set<String> keys = dao.getAllAdminDetails().keySet();
 			for (String key : keys) {
-				String value = AdminLoginDao.getAllAdminDetails().get(key);
+				String value = dao.getAllAdminDetails().get(key);
 				if (userName.equals(key) && password.equals(value)) {
 					validUser = true;
 					break;
@@ -86,7 +91,7 @@ public class AdminService {
 	}
 
 	public static boolean isAdminAlreadyAvailable(AdminLogin detail) {
-		AdminLoginDao dao = new AdminLoginDao();
+		AdminLoginImp dao = new AdminLoginDao();
 		return dao.findAdminAlreadtExistsOrNot(detail);
 	}
 

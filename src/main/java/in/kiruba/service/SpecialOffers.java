@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import in.kiruba.dao.SpecialOfferDao;
 import in.kiruba.exception.ServiceException;
+import in.kiruba.impl.SpecialOfferImp;
 import in.kiruba.log.Logger;
 import in.kiruba.model.SpecialOffer;
 
@@ -20,8 +21,10 @@ public class SpecialOffers {
 
 	public static SpecialOffer getOfferService(int plan, LocalDate todayDate) {
 		SpecialOffer dao = null;
+		SpecialOfferImp daoObject=new SpecialOfferDao();
+		
 		try {
-			dao = SpecialOfferDao.getOfferDetail(plan);
+			dao = daoObject.getOfferDetail(plan);
 			LocalDate date = dao.getStage();
 			LocalDate beforeTwoDays = date.minusDays(2);
 			LocalDate beforeOneDay = beforeTwoDays.plusDays(1);

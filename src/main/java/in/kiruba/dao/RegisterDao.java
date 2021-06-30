@@ -5,16 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import in.kiruba.exception.DatabaseException;
+import in.kiruba.impl.RegisterImp;
 import in.kiruba.model.User;
 import in.kiruba.utill.ConnectionUtil;
 
-public class RegisterDao {
+public class RegisterDao implements RegisterImp{
 	public RegisterDao() {
 		//default constructor
 
 	}
 
-	public static void register(User reg) throws ClassNotFoundException, SQLException {
+	public  void register(User reg) throws ClassNotFoundException, SQLException {
 		Connection connection = null;
 		PreparedStatement pst = null;
 

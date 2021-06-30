@@ -6,15 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import in.kiruba.exception.DatabaseException;
+import in.kiruba.impl.SpecialOfferImp;
 import in.kiruba.model.SpecialOffer;
 import in.kiruba.utill.ConnectionUtil;
 
-public class SpecialOfferDao {
-	private SpecialOfferDao() {
+public class SpecialOfferDao implements SpecialOfferImp{
+	
 
-	}
-
-	public static SpecialOffer getOfferDetail(int plan) throws SQLException, ClassNotFoundException {
+	public  SpecialOffer getOfferDetail(int plan) throws SQLException, ClassNotFoundException {
 		Connection connection = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;

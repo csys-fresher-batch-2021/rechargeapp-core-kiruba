@@ -3,6 +3,7 @@ package in.kiruba.service;
 import java.time.LocalDate;
 
 import in.kiruba.dao.PlanDao;
+import in.kiruba.impl.PlanImp;
 import in.kiruba.log.Logger;
 import in.kiruba.model.Plan;
 
@@ -20,12 +21,13 @@ public class FreeVoucherService {
 
 	public static boolean freeVoucher(int userId, String network, int plan) {
 		boolean valid = false;
+		PlanImp dao=new PlanDao();
 
 		LocalDate expiry = ValidityRemainder.findExpiryDate(userId);
 		if (LocalDate.now().isBefore(expiry)) {
 			valid = true;
 			int validity = AmountPayableService.getValidity(plan, network);
-			Plan data = PlanDao.getExpriyDate(plan, network);
+			Plan data = dao.getExpriyDate(plan, network);
 			String mobileData = data.getData();
 			Logger.logger("Scheme MobileData: " + mobileData);
 

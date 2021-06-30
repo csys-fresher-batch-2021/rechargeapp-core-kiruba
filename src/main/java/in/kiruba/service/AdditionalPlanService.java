@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import in.kiruba.dao.AdditionalPlanDao;
 import in.kiruba.dao.PlanDao;
 import in.kiruba.exception.ServiceException;
+import in.kiruba.impl.AdditionalPlanImp;
+import in.kiruba.impl.PlanImp;
 import in.kiruba.log.Logger;
 import in.kiruba.model.AdditionalPlan;
 import in.kiruba.model.Plan;
@@ -15,8 +17,9 @@ public class AdditionalPlanService {
 
 	public static boolean extraPlan(AdditionalPlan object) {
 		boolean valid;
+		AdditionalPlanImp dao=new AdditionalPlanDao();
 		try {
-			AdditionalPlanDao.extraPlan(object);
+			dao.extraPlan(object);
 			valid = true;
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new ServiceException("Cannot Added");
@@ -35,9 +38,11 @@ public class AdditionalPlanService {
 
 	public static boolean additionalPlan(int plan, AdditionalPlan object) throws ClassNotFoundException, SQLException {
 		boolean valid = false;
-		AdditionalPlan obj = AdditionalPlanDao.getExtraPlanDetail(plan);
+		AdditionalPlanImp dao=new AdditionalPlanDao();
+		AdditionalPlan obj = dao.getExtraPlanDetail(plan);
+		PlanImp daoObject=new PlanDao();
 
-		Plan add = PlanDao.getAllPlanDetails(plan);
+		Plan add = daoObject.getAllPlanDetails(plan);
 
 		if ((obj == null && add == null)) {
 			String statement = "This Plan is Unavailable";
@@ -47,8 +52,9 @@ public class AdditionalPlanService {
 		}
 
 		else if (add == null && (obj.getValidity().equals(object.getValidity()))) {
+			
 
-			AdditionalPlanDao.additionalPlan(object);
+			dao.additionalPlan(object);
 			String string = "RECHARGE SUCCESSFULL";
 			Logger.logger(string);
 			valid = true;
@@ -62,7 +68,7 @@ public class AdditionalPlanService {
 
 			} else {
 				try {
-					AdditionalPlanDao.additionalPlan(object);
+					dao.additionalPlan(object);
 				} catch (SQLException e) {
 					throw new ServiceException("Unable to add details");
 
@@ -87,7 +93,8 @@ public class AdditionalPlanService {
 	 */
 
 	public static int getValidity(int amount) {
-		AdditionalPlan validity = AdditionalPlanDao.getExtraPlanDetail(amount);
+		AdditionalPlanImp dao=new AdditionalPlanDao();
+		AdditionalPlan validity = dao.getExtraPlanDetail(amount);
 
 		int conversionInteger;
 		String value = validity.getValidity();
@@ -105,7 +112,7 @@ public class AdditionalPlanService {
 	 */
 
 	public static boolean isAdditionalPlanAlreadyAvailable(int plan) {
-		AdditionalPlanDao dao = new AdditionalPlanDao();
+		AdditionalPlanImp dao = new AdditionalPlanDao();
 		return dao.findAdditionalPlanAlreadyExistsOrNot(plan);
 
 	}

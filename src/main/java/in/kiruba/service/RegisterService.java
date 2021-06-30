@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import in.kiruba.dao.RegisterDao;
 import in.kiruba.exception.ServiceException;
+import in.kiruba.impl.RegisterImp;
 import in.kiruba.model.User;
 
 public class RegisterService {
@@ -11,9 +12,10 @@ public class RegisterService {
 		
 	}
 	public static boolean registerUser(User regobj) {
+		RegisterImp dao=new RegisterDao();
 		
 			try {
-				RegisterDao.register(regobj);
+				dao.register(regobj);
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 				throw new ServiceException("Cannot call RegisterDao");
@@ -26,7 +28,7 @@ public class RegisterService {
 	}
 	
 	public static  boolean isUserAlreadyAvailable(User user) {
-		RegisterDao dao = new RegisterDao();
+		RegisterImp dao = new RegisterDao();
 		return dao.findUserAlreadtExistsOrNot(user);
 	}
 	

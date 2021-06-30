@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import in.kiruba.dao.PaymentDetailDao;
 import in.kiruba.dao.PlanDao;
 import in.kiruba.exception.ServiceException;
+import in.kiruba.impl.PaymentDetailImp;
+import in.kiruba.impl.PlanImp;
 import in.kiruba.model.PaymentDetail;
 import in.kiruba.model.Plan;
 
@@ -23,9 +25,10 @@ public class AmountPayableService {
 	public static boolean payableService(PaymentDetail object) {
 
 		boolean valid;
+		PaymentDetailImp dao=new PaymentDetailDao();
 
 		try {
-			valid = PaymentDetailDao.payment(object);
+			valid = dao.payment(object);
 
 			
 		} catch (ClassNotFoundException | SQLException e) {
@@ -44,7 +47,8 @@ public class AmountPayableService {
 	 */
 
 	public static int getValidity(int amount, String network) {
-		Plan validity = PlanDao.getExpriyDate(amount, network);
+		PlanImp dao=new PlanDao();
+		Plan validity = dao.getExpriyDate(amount, network);
 		int conversionInteger;
 		String value = validity.getValidity();
 

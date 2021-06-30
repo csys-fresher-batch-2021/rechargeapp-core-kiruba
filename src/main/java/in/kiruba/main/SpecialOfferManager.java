@@ -15,7 +15,7 @@ public class SpecialOfferManager {
 		String network="Airtel";
 		boolean valid=PlanService.isSchemeAlreadyAvailable(plan,network);
 		if(valid) {
-		LocalDate todayDate = LocalDate.of(2021, 06, 25);
+		LocalDate todayDate = LocalDate.of(2021, 06, 20);
 		SpecialOffer offer = SpecialOffers.getOfferService(plan, todayDate);
 		Logger.logger(offer);
 		}else {

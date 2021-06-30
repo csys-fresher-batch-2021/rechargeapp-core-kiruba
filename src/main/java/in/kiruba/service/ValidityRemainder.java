@@ -8,6 +8,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import in.kiruba.dao.PaymentDetailDao;
 import in.kiruba.exception.ServiceException;
+import in.kiruba.impl.PaymentDetailImp;
 import in.kiruba.model.PaymentDetail;
 
 public class ValidityRemainder {
@@ -29,9 +30,10 @@ public class ValidityRemainder {
 	public static long remainingValidity(int userId) throws ClassNotFoundException, SQLException {
 
 		long validityPeriod = 0;
+		PaymentDetailImp dao=new PaymentDetailDao();
 
 		PaymentDetail detail;
-		detail = PaymentDetailDao.getTransactionDetail(userId);
+		detail = dao.getTransactionDetail(userId);
 
 		int validityDays = detail.getValidity();
 
@@ -53,8 +55,9 @@ public class ValidityRemainder {
 	public static LocalDate findExpiryDate(int userId) {
 		PaymentDetail detail;
 		LocalDate expiryDate;
+		PaymentDetailImp dao=new PaymentDetailDao();
 		try {
-			detail = PaymentDetailDao.getTransactionDetail(userId);
+			detail = dao.getTransactionDetail(userId);
 		} catch (ClassNotFoundException | SQLException e) {
 			throw new ServiceException("Cannot find User Id");
 		}

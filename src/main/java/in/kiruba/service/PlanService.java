@@ -4,6 +4,8 @@ import java.util.List;
 
 import in.kiruba.dao.ParticularPlan;
 import in.kiruba.dao.PlanDao;
+import in.kiruba.impl.ParticularPlanImp;
+import in.kiruba.impl.PlanImp;
 import in.kiruba.model.Plan;
 
 public class PlanService {
@@ -19,7 +21,8 @@ public class PlanService {
 	public static List<Plan> getAllNetworkService() {
 
 		List<Plan> list;
-		list = PlanDao.getAllPlanLists();
+		PlanImp dao=new PlanDao();
+		list = dao.getAllPlanLists();
 		return list;
 
 	}
@@ -34,7 +37,8 @@ public class PlanService {
 	public static List<Plan> getParticularNetworkList(String network) {
 
 		List<Plan> list;
-		list = ParticularPlan.getParticularNetworkList(network);
+		ParticularPlanImp dao=new ParticularPlan();
+		list = dao.getParticularNetworkList(network);
 		return list;
 
 	}
@@ -46,7 +50,8 @@ public class PlanService {
 	public static List<Integer> getAllPlans() {
 
 		List<Integer> list;
-		list = PlanDao.getAllPlans();
+		PlanImp dao=new PlanDao();
+		list = dao.getAllPlans();
 		return list;
 
 	}
@@ -75,8 +80,9 @@ public class PlanService {
 	 */
 
 	public static String findDays(int plan, String network) {
+		PlanImp dao=new PlanDao();
 
-		Plan userDetail = PlanDao.getExpriyDate(plan, network);
+		Plan userDetail = dao.getExpriyDate(plan, network);
 		String str = userDetail.getValidity();
 
 		str = str.replaceAll("[^0-9]", "");
@@ -92,8 +98,9 @@ public class PlanService {
 	 */
 
 	public static String[] detials(int plan, String network) {
+		PlanImp dao=new PlanDao();
 
-		Plan userDetail = PlanDao.getExpriyDate(plan, network);
+		Plan userDetail = dao.getExpriyDate(plan, network);
 
 		String[] detail;
 		detail = new String[] { "NETWORK " + userDetail.getNetworkName(), "VALIDITY " + userDetail.getValidity(),
@@ -109,7 +116,7 @@ public class PlanService {
 	 * @return
 	 */
 	public static  boolean isSchemeAlreadyAvailable(int plan,String network) {
-		PlanDao dao = new PlanDao();
+		PlanImp dao = new PlanDao();
 		return dao.findPlanAlreadyExistsOrNot(plan,network);
 	}
 
